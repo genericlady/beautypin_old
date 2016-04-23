@@ -1,5 +1,7 @@
+require 'rails_helper'
+
 describe 'Deal Attribute Testing' do
-  describe 'A new deal has title, description and price' do
+  describe 'New deal has title, description and price' do
     subject { Deal.new(title: "5 mani pedi spa package",
                     description: "Green Tea Spa Special with Hibiscus",
                     price: 100.00) }
