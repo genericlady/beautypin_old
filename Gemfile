@@ -19,6 +19,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'byebug'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :development do
