@@ -1,9 +1,14 @@
 require 'rails_helper'
 
-describe 'Beauty Place Attribute Testing' do
-  subject { BeautyPlace.new(name: 'Lotus Lady Spa') }
+describe 'Beauty Place' do
+  subject { build_stubbed(:beauty_place) }
 
-  describe 'New beauty place has a name' do
-    it { is_expected.to have_attributes(name: 'Lotus Lady Spa') }
+  context 'New beauty place has a name' do
+    it { should have_attributes(name: 'Lotus Lady Spa') }
   end
+
+  context 'has many deals' do
+    it { should have_many(:deals) }
+  end
+
 end

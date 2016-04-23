@@ -3,8 +3,7 @@ class CreateDeals < ActiveRecord::Migration
     create_table :deals do |t|
       t.string :title
       t.text :description
-      t.decimal :price, precision: 5, scale: 2
-      
+      t.integer :discount, limit: 100
       t.timestamps null: false
     end
   end
