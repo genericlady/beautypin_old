@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id params[:id])
+    @user = User.find_by(id: params[:id])
     authorize @user
 
     if @user.update_attributes(secure_params)
