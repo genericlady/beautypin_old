@@ -5,6 +5,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'shoulda/matchers'
+# require 'support/controller_helpers'
 require 'database_cleaner'
 require 'pundit/rspec'
 # require 'paperclip/matchers'
@@ -21,7 +22,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include FactoryGirl::Syntax::Methods
   config.include Features::SessionHelpers, type: :feature
-  # config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerHelpers, :type => :controller
   # config.include Devise::TestHelpers, type: :view
 
   config.include Warden::Test::Helpers

@@ -3,4 +3,8 @@ FactoryGirl.define do
     name 'Lotus Lady Spa'
 
   end
+
+  factory :salon, class: BeautyPlace do
+    name 'Vidal Sassoon'
+  end
 end
