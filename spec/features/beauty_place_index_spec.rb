@@ -7,7 +7,7 @@ describe 'Beauty Place index page' do
     create(:salon)
   end
 
-  scenario 'user sees all beauty places without crud panel' do
+  scenario 'normal user sees all beauty places without crud panel' do
     expect(user.role).to eq('normal')
     sign_in user.email, user.password
 
@@ -22,15 +22,15 @@ describe 'Beauty Place index page' do
     expect(user.role).to eq('owner')
     sign_in user.email, user.password
 
+    visit '/index'
     expect(page).to have_content 'Vidal Sassoon'
 
     context 'has buttons create, edit and delete' do
+      binding.pry
       buttons = []
       buttons << find_button('Create')
       buttons << find_button('Edit')
       buttons << find_button('Delete')
-      # Test equality
-      binding.pry
     end
 
   end

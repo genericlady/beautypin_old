@@ -1,14 +1,15 @@
 class BeautyPlacePolicy
-  attr_reader :current_user, :model
+  attr_reader :user, :model
 
-  def initialize(current_user, model)
-    @current_user = current_user
+  def initialize(user, model)
+    @user = user
     @beauty_place = model
   end
 
   # reflect the action in controller
   def index?
-    @current_user.admin? || @current_user.normal? || @current_user.owner?
+    binding.pry
+    @user.admin? || @user.normal? || @user == @beauty_place.user
   end
 
 end

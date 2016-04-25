@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
     self.role ||= :normal
   end
 
-  # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  belongs_to :owner, :polymorphic => true
+
 end
