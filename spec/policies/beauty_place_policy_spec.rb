@@ -7,9 +7,15 @@ describe BeautyPlacePolicy do
   let (:other_user) { FactoryGirl.build_stubbed :user }
   let (:owner) { FactoryGirl.build_stubbed :user, :owner }
   let (:admin) { FactoryGirl.build_stubbed :user, :admin }
+  let (:salon) { build_stubbed :beauty_place }
+
+  before :each do
+    salon.owner = owner
+  end
 
   permissions :index? do
     it "allows access if not an admin" do
+      binding.pry
       expect(BeautyPlacePolicy).to permit(current_user)
     end
 
@@ -20,7 +26,7 @@ describe BeautyPlacePolicy do
     it "allows access for an owner" do
       expect(BeautyPlacePolicy).to permit(owner)
     end
-    
+
   end
   #
   # permissions :show? do

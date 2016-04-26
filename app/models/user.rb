@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :owner, :polymorphic => true
-
+  has_many :ownerships
+  has_many :beauty_places, through: ownerships
 end

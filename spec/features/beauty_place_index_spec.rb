@@ -4,7 +4,9 @@ describe 'Beauty Place index page' do
   let!(:user) { create :user }
 
   before(:each) do
-    create(:salon)
+    salon = create(:salon)
+    salon.owner = user
+    salon.save
   end
 
   scenario 'normal user sees all beauty places without crud panel' do

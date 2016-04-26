@@ -8,8 +8,9 @@ class BeautyPlacePolicy
 
   # reflect the action in controller
   def index?
-    binding.pry
-    @user.admin? || @user.normal? || @user == @beauty_place.user
+    # can i make it so an owner can only see beauty_places they own?
+    # @beauty_place is nil
+    @user.admin? || @user.normal? || @user.owner?
   end
 
 end

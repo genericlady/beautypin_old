@@ -6,5 +6,6 @@ FactoryGirl.define do
 
   factory :salon, class: BeautyPlace do
     name 'Vidal Sassoon'
+    association :owner, factory: :owner
   end
 end
