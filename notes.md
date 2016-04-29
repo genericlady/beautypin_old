@@ -2,6 +2,7 @@ write a policy test for search?
 
 if normal user
 select state
+<!-- POST '/deals/results' -->
 list all deals by state
 
 if owner
