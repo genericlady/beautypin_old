@@ -3,11 +3,11 @@ require 'rails_helper'
 describe 'Beauty Place index page' do
   let!(:user) { create :user }
 
-  before(:each) do
-    salon = create(:salon)
-    salon.owner = user
-    salon.save
-  end
+  # before(:each) do
+  #   salon = create(:salon)
+  #   salon.owner = user
+  #   salon.save
+  # end
 
   scenario 'normal user sees all beauty places without crud panel' do
     expect(user.role).to eq('normal')

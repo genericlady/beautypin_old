@@ -8,6 +8,7 @@ require 'shoulda/matchers'
 # require 'support/controller_helpers'
 require 'database_cleaner'
 require 'pundit/rspec'
+require 'pundit/matchers'
 # require 'paperclip/matchers'
 
 # require files inside of support

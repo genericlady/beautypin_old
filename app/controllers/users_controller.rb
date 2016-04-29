@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    authorize User
+    raise "not authorized" unless UserPolicy.new(current_user, User).index?
   end
 
   def show

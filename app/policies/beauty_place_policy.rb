@@ -1,16 +1,54 @@
-class BeautyPlacePolicy
-  attr_reader :user, :model
+class BeautyPlacePolicy < ApplicationPolicy
 
-  def initialize(user, model)
-    @user = user
-    @beauty_place = model
-  end
-
-  # reflect the action in controller
   def index?
-    # can i make it so an owner can only see beauty_places they own?
-    # @beauty_place is nil
-    @user.admin? || @user.normal? || @user.owner?
+    user.admin? || user.normal? || user.owner?
   end
 
+  def show?
+    user.admin?
+    # scope.where(:id => record.id).exists?
+  end
+
+  def create?
+    user.admin?
+  end
+
+  def new?
+    create?
+  end
+
+  def update?
+    user.admin?
+  end
+
+  def edit?
+    update?
+  end
+
+  def destroy?
+    user.admin?
+  end
+
+  def scope
+    Pundit.policy_scope!(user, record.class)
+  end
+
+  class Scope < Scope
+    def resolve
+      scope.all unless !user.admin?
+
+      # if user.admin?
+      #   scope.all
+      # else
+      # NOTE: it would be nice to have an attribute of published
+      #   scope.where{ published: true }
+      # end
+    end
+
+  end
+
+  private
+  def site_visitor?
+    user.nil?
+  end
 end

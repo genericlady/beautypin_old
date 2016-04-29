@@ -1,17 +1,23 @@
 <header class="navigation" role="banner">
   <div class="navigation-wrapper">
-    <div class="logo"><%= link_to 'BeautyPin', root_path %></div>
-    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
-    <nav role="navigation">
-      <ul id="js-navigation-menu" class="navigation-menu show">
+    <ul class="nav nav-inline">
+    </ul>
+    <nav class="navbar navbar-light bg-faded" role="navigation" style="background-color: #">
+      <%= link_to 'BeautyPin', root_path, class: 'navbar-brand' %>
+      <div class="nav navbar-nav">
         <% if user_signed_in? %>
-          <li class="nav-link"><%= link_to "Users", users_path %></li>
-          <li class="nav-link"><%= link_to "Log out", destroy_user_session_path, method: "delete" %></li>
+          <%= link_to "Home", root_path, class: 'nav-item nav-link active' %>
+          <%= link_to "Users", users_path, class: 'nav-item nav-link' %>
+          <%= link_to "Log out", destroy_user_session_path, class: 'nav-item nav-link' , method: "delete" %>
         <% else %>
-          <li class="nav-link"><%= link_to "Sign In", new_user_session_path %></li>
-          <li class="nav-link"><%= link_to "Register", new_user_registration_path %></li>
+          <%= link_to "Sign In", new_user_session_path, class: 'nav-item nav-link' %>
+          <%= link_to "Register", new_user_registration_path, class: 'nav-item nav-link' %>
         <% end %>
-      </ul>
+      </div>
+      <form class="form-inline pull-xs-right">
+        <input class="form-control" type="text" placeholder="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </nav>
   </div>
 </header>

@@ -1,10 +1,13 @@
 class BeautyPlacesController < ApplicationController
   before_filter :authenticate_user!
-  after_action :verify_authorized, only: [:index]
 
   def index
-    @beauty_places = BeautyPlace.all
-    authorize BeautyPlace
+    raise "not authorized" unless BeautyPlacePolicy.new(current_user, BeautyPlace).index?
+    @beauty_places = BeautyPlacePolicy::Scope.new(current_user, BeautyPlace).resolve
+    # if user_signed_in?
+    #   @beauty_places = ReviewPolicy::Scope.new(current_user, BeautyPlace).resolve
+    # end
+    # raise "not authorized" unless BeautyPlacePolicy.new(current_user, BeautyPlace).index?
   end
 
   def new
