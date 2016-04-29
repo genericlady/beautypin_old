@@ -1,5 +1,4 @@
-add a link for /deals
-deals url '/deals'
+write a policy test for search?
 
 if normal user
 select state

@@ -52,4 +52,10 @@ class ApplicationPolicy
       scope
     end
   end
+
+  private
+  def permit_all_roles
+    user.admin? || user.normal? || user.owner?
+  end
+
 end

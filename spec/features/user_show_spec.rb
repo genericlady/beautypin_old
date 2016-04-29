@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User profile page', :devise do
-  scenario 'user sees their own own profile' do
+  scenario 'user sees their own profile' do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit user_path(user)
