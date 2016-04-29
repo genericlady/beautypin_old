@@ -1,5 +1,6 @@
 class DealsController < ApplicationController
   def search
+    authorize(Deal)
     # first stop is to select a state and submit it to list_deals
   end
 
