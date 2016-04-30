@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'pundit'
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'geocoder'
 
 group :development, :test do
   gem 'pry-rails'

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   resources :users
+  resources :deals
+  resources :locations
 
   get '/index', to: 'beauty_places#index'
-  get '/deals', to: 'deals#search'
+  get '/searches/new', to: 'searches#new'
 
   # Devise routes
   devise_for :users, :skip => [:sessions]

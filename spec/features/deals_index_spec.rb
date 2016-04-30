@@ -6,11 +6,8 @@ feature 'Deals index' do
     visit '/'
     expect { find_link 'Deals', href: '/deals' }.not_to raise_error
     click_link 'Deals'
+    expect(current_path).to eq('/deals')
 
-    expect(current_path).to eq('/deals/search')
-
-    # click link to /deals
-    # visit '/deals'
     expect { find_field('State') }.not_to raise_error
     # select state
     # list deals from that state

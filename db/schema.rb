@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426042745) do
+ActiveRecord::Schema.define(version: 20160430143437) do
 
   create_table "beauty_places", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20160426042745) do
     t.integer  "beauty_place_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ownerships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "beauty_place_id"
@@ -36,6 +44,12 @@ ActiveRecord::Schema.define(version: 20160426042745) do
 
   add_index "ownerships", ["beauty_place_id"], name: "index_ownerships_on_beauty_place_id"
   add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id"
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "services", force: :cascade do |t|
     t.string   "title"

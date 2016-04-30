@@ -1,15 +1,12 @@
 class DealsController < ApplicationController
-  def search
-    authorize(Deal)
-    # first stop is to select a state and submit it to list_deals
-    render 'search'
+
+  def index
+    @deals = Deal.search(params[:search])
+    binding.pry
+    policy_scope(@deals)
   end
 
-  # POST { :state => 'ny' }
-  def list_deals
-    # build a scoped collection for a normal user
+  def search_params
+    params.require(:search).permit(policy(Deal).permitted_attributes)
   end
-
-  private
-  # custom params for state
 end

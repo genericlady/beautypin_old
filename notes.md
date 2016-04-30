@@ -1,7 +1,10 @@
-write a policy test for search?
+# Important
+add locatable model
 
-if normal user
-select state
+#Flow
+normal user
+
+post to search action
 <!-- POST '/deals/results' -->
 list all deals by state
 

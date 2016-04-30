@@ -1,0 +1,15 @@
+<h1>Deals</h1>
+
+<ul>
+  <% policy_scope(@deals).each do |deal| %>
+    <li>
+      <%= link_to deal.title, deal_path(deal)  %>
+      | <%= link_to 'Edit', edit_deal_path(deal) %>
+      | <%= link_to 'Destroy', deal_path(deal), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<p>
+  <%= link_to "new deal", new_deal_path %>
+</p>
