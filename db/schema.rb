@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430235817) do
+ActiveRecord::Schema.define(version: 20160501145119) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.time     "start_time"
+  end
+
+  add_index "appointments", ["employee_id"], name: "index_appointments_on_employee_id"
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
 
   create_table "beauty_places", force: :cascade do |t|
     t.string   "name"
@@ -34,6 +45,16 @@ ActiveRecord::Schema.define(version: 20160430235817) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employments", force: :cascade do |t|
+    t.integer  "beauty_place_id"
+    t.integer  "employee_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "employments", ["beauty_place_id"], name: "index_employments_on_beauty_place_id"
+  add_index "employments", ["employee_id"], name: "index_employments_on_employee_id"
+
   create_table "locatables", force: :cascade do |t|
     t.integer  "location_id"
     t.integer  "deal_id"
@@ -50,6 +71,9 @@ ActiveRecord::Schema.define(version: 20160430235817) do
     t.float    "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "ip_address"
+    t.string   "city"
+    t.string   "state"
   end
 
   create_table "ownerships", force: :cascade do |t|
@@ -73,6 +97,16 @@ ActiveRecord::Schema.define(version: 20160430235817) do
     t.datetime "updated_at",                         null: false
     t.integer  "deal_id"
   end
+
+  create_table "user_locations", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_locations", ["location_id"], name: "index_user_locations_on_location_id"
+  add_index "user_locations", ["user_id"], name: "index_user_locations_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

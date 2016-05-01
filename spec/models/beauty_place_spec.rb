@@ -1,14 +1,10 @@
 require 'rails_helper'
 
-describe 'Beauty Place' do
-  subject { build_stubbed(:beauty_place) }
+describe BeautyPlace.new do
+  subject { described_class }
 
-  context 'New beauty place has a name' do
-    it { should have_attributes(name: 'Lotus Lady Spa') }
-  end
-
-  context 'has many deals' do
-    it { should have_many(:deals) }
-  end
-
+  it { should have_attributes(name: nil) }
+  it { should have_many(:deals) }
+  it { should have_many(:employees) }
+  
 end
