@@ -14,6 +14,7 @@ gem 'devise'
 gem 'pundit'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'geocoder'
+gem 'geokit-rails'
 
 group :development, :test do
   gem 'pry-rails'

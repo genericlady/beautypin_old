@@ -15,15 +15,12 @@ class LocationsController < ApplicationController
 
   def index
     if params[:search].present?
-      binding.pry
       # { search: { state: 'ny' } }
       @locations = Location.find_by params[:search]
       @locations = Location.near(params[:search], 50, order: :distance)
     else
-      binding.pry
       @locations = Location.all
     end
-    binding.pry
     policy_scope(@locations)
   end
 

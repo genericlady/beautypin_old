@@ -51,7 +51,6 @@ describe BeautyPlacePolicy do
 
   # permissions :show? do
   #   it 'denies access if user that is nil' do
-  #     binding.pry
   #     expect(subject).not_to permit(user, beauty_place)
   #   end
   #

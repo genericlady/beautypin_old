@@ -28,7 +28,6 @@ describe 'Beauty Place index page' do
     expect(page).to have_content 'Vidal Sassoon'
 
     context 'has buttons create, edit and delete' do
-      binding.pry
       buttons = []
       buttons << find_button('Create')
       buttons << find_button('Edit')

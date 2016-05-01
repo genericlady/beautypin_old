@@ -13,7 +13,6 @@ class DealPolicy < ApplicationPolicy
         scope.all
       end
       # if user.normal? || user.admin?
-      #   binding.pry
       #   scope.search(search_params)
       # end
       # if user.admin?

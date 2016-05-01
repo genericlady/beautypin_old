@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430143437) do
+ActiveRecord::Schema.define(version: 20160430235817) do
 
   create_table "beauty_places", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "owner_id"
   end
 
   create_table "deals", force: :cascade do |t|
@@ -28,6 +27,22 @@ ActiveRecord::Schema.define(version: 20160430143437) do
     t.datetime "updated_at",                  null: false
     t.integer  "beauty_place_id"
   end
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locatables", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "deal_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "locatables", ["deal_id"], name: "index_locatables_on_deal_id"
+  add_index "locatables", ["location_id"], name: "index_locatables_on_location_id"
 
   create_table "locations", force: :cascade do |t|
     t.string   "address"
