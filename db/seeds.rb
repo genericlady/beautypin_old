@@ -16,7 +16,7 @@ beauty_place = owner.beauty_places.create(name: 'Sassoon')
 beauty_place.employees.create(name: 'Jessica')
 beauty_place.employees.create(name: 'Beth')
 beauty_place.employees.create(name: 'Scarlet')
-                        binding.pry
+
 beauty_place.deals.create(
                         title: '5 Mani and Pedis only 90$',
                         description: 'The very best mani pedis in town',
