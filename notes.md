@@ -1,5 +1,12 @@
-
 write seed data
+
+create partial sub_heading
+add helper-bar to sub_heading
+move _nav _search to partials
+render _nav in sub_heading
+change helper-bar to sub-nav
+
+change normal user to customer
 
 #Flow
 normal user
