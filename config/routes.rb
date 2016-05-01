@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :users
   resources :deals
   resources :locations
+  resources :beauty_places
 
-  get '/index', to: 'beauty_places#index'
   get '/searches/new', to: 'searches#new'
 
   # Devise routes

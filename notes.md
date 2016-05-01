@@ -1,5 +1,7 @@
 # To Pass the assessment
-add reasonable validations for simple attributes
+add to controllers
+before_filter :authenticate_user!
+
 You don't need to add every possible validation or duplicates,
 such as presence and a minimum length,
 but the models should defend against invalid data.
