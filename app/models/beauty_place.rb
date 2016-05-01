@@ -6,4 +6,6 @@ class BeautyPlace < ActiveRecord::Base
 
   has_one :ownership
   has_one :user, through: :ownership
+
+  validates :name, presence: true
 end
