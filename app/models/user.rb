@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :appointments
   has_many :employees, through: :appointments
 
+  has_many :employees, through: :beauty_places
+
   has_one :user_location
   has_one :location, through: :user_location
 

@@ -1,0 +1,4 @@
+<h1>New Place of Beauty</h1>
+<%= form_for @beauty_place, url: beauty_places_save_path, method: :post do |f| %>
+  <%= render 'form', f: f %>
+<% end %>

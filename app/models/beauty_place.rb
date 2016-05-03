@@ -8,13 +8,15 @@ class BeautyPlace < ActiveRecord::Base
   has_one :ownership
   has_one :user, through: :ownership
 
-  # has_one :beauty_place_location
-  # has_one :location, through: :beauty_place_location
-
   has_one :locatable
   has_one :location, through: :locatable
 
+  accepts_nested_attributes_for :employees, reject_if: :all_blank
+  accepts_nested_attributes_for :services, reject_if: :all_blank
+  accepts_nested_attributes_for :deals, reject_if: :all_blank
+
   validates :name, presence: true
+  validates :name, uniqueness: true
 
   def city
     location.city

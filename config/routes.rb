@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :employees
 
   get '/searches/new', to: 'searches#new'
+  post '/beauty_places/save', to: 'beauty_places#save'
 
   # Devise routes
   devise_for :users, :skip => [:sessions]

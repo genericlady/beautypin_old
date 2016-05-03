@@ -8,12 +8,16 @@ class BeautyPlacePolicy < ApplicationPolicy
     user.admin? || user.id == record.user.id || user.normal?
   end
 
-  def create?
-    user.admin?
+  def save?
+    create?
   end
 
   def new?
     create?
+  end
+
+  def create?
+    user.admin? || user.owner?
   end
 
   def update?
@@ -25,7 +29,7 @@ class BeautyPlacePolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    user.admin? || user.id == record.user.id
   end
 
   def scope
