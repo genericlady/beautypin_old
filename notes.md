@@ -1,13 +1,19 @@
 # To Pass the assessment
-add to controllers
-before_filter :authenticate_user!
 
 You don't need to add every possible validation or duplicates,
 such as presence and a minimum length,
 but the models should defend against invalid data.
 
+# one
 make nested forms that writes to an associated model through
 a custom attribute writer.
+
+deals_controller testing
+Admin and Owner of Deal only
+CRUD A Deal
+when creating a deal choose an existing service or create one
+
+A Deal should have an attribute of published
 New Deal Form that allows you to add services
 Show all deals that include specified service
 deal[service_attributes][0][title]
@@ -34,7 +40,12 @@ Make a Cart for Deals
 user has deals through purchased_deals
 user.deals.expired
 
+# Features to Build
+* normal user to make appointment with employee
+* be able to purchase deals
+
 # My wants
+salon.user should be salon.owner
 a user should be able to make an appointment with an employee
 from a beauty place show page.
 

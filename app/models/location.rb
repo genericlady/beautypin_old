@@ -5,14 +5,17 @@ class Location < ActiveRecord::Base
   has_many :user_locations
   has_many :users, through: :user_locations
 
+  has_many :beauty_place_locations
+  has_many :locations, through: :beauty_place_locations
+
   geocoded_by :ip_address
   # NOTE: find a hook suitable for set_ip
   after_validation :geocode, if: :ip_address_changed?
 
   validates :city, presence: true
   validates :state, presence: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
+  # validates :latitude, presence: true
+  # validates :longitude, presence: true
 
   def set_attributes
     set_ip

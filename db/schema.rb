@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501145119) do
+ActiveRecord::Schema.define(version: 20160502162507) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20160501145119) do
 
   add_index "appointments", ["employee_id"], name: "index_appointments_on_employee_id"
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
+
+  create_table "beauty_place_locations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "beauty_places", force: :cascade do |t|
     t.string   "name"
@@ -58,8 +63,9 @@ ActiveRecord::Schema.define(version: 20160501145119) do
   create_table "locatables", force: :cascade do |t|
     t.integer  "location_id"
     t.integer  "deal_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "beauty_place_id"
   end
 
   add_index "locatables", ["deal_id"], name: "index_locatables_on_deal_id"

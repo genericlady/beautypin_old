@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-
   has_many :ownerships
   has_many :beauty_places, through: :ownerships
+
+  has_many :deals, through: :beauty_places
+  has_many :services, through: :deals
 
   has_many :appointments
   has_many :employees, through: :appointments

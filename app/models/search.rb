@@ -7,6 +7,10 @@ class Search < ActiveRecord::Base
     Deals.find(:all, conditions: conditions)
   end
 
+  # def find_beauty_places
+  #   BeautyPlace.find(:all, conditions: conditions)
+  # end
+
   # NOTE: doesn't trigger if blank
   def keyword_conditions
     ["deals.title LIKE ?", "%#{keywords}%", "%#{keywords}%"] unless keywords.blank?

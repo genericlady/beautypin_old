@@ -5,8 +5,7 @@ class BeautyPlacePolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin?
-    # scope.where(:id => record.id).exists?
+    user.admin? || user.id == record.user.id || user.normal?
   end
 
   def create?
@@ -36,13 +35,13 @@ class BeautyPlacePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all unless !user.admin?
-
-      # if user.admin?
-      #   scope.all
-      # else
-      # NOTE: it would be nice to have an attribute of published
-      #   scope.where{ published: true }
-      # end
+      if user.admin?
+        scope.all
+      elsif user.owner?
+        user.beauty_places
+      else
+        # return only published beauty_places
+      end
     end
 
   end

@@ -21,7 +21,7 @@ describe BeautyPlacePolicy do
     context 'accessing an existing beauty_place' do
       it 'should throw a NotAuthorizedError' do
         expect { BeautyPlacePolicy.new(user, beauty_place) }.to raise_error(Pundit::NotAuthorizedError, 'must be logged in')
-        # it { shuold forbid_mass_assignment_of(:beauty_place)}
+        # it { should forbid_mass_assignment_of(:beauty_place)}
       end
     end
 

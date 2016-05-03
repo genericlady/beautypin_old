@@ -12,6 +12,11 @@ User.create!(email: 'normal@gmail.com', password: 'password', role: 0)
 User.create!(email: 'admin@gmail.com', password: 'password', role: 2)
 owner = User.create!(email: 'owner@gmail.com', password: 'password', role: 1)
 
+Service.create(title: 'Manicure', price: '10')
+Service.create(title: 'Pedicure', price: '15')
+Service.create(title: 'Blowdry', price: '20')
+Service.create(title: 'Juviderm Injection', price: '200')
+
 beauty_place = owner.beauty_places.create(name: 'Sassoon')
 beauty_place.employees.create(name: 'Jessica')
 beauty_place.employees.create(name: 'Beth')
@@ -32,6 +37,7 @@ beauty_place.deals.create(
                         description: 'Turn that frown upside down',
                         discount: 15
                         )
+beauty_place.location = Location.create(city: 'new york', state: 'ny')
 
 beauty_place2 = BeautyPlace.create!(name: 'Thomas A. Anderson Capital City Spa')
 beauty_place2.employees.create(name: 'Dujour')
@@ -46,3 +52,4 @@ beauty_place2.deals.create(
                       description: 'once a month laser',
                       discount: 20
                       )
+beauty_place2.location = Location.create(city: 'san francisco', state: 'ca')

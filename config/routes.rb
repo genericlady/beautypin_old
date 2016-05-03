@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :deals
   resources :locations
   resources :beauty_places
+  resources :employees
 
   get '/searches/new', to: 'searches#new'
 

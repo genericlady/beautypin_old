@@ -2,18 +2,14 @@ require 'rails_helper'
 
 describe 'Beauty Place index page' do
   let!(:user) { create :user }
-
-  # before(:each) do
-  #   salon = create(:salon)
-  #   salon.owner = user
-  #   salon.save
-  # end
+  let!(:salon) { create :salon }
+  let!(:beauty_place) { create :beauty_place }
 
   scenario 'normal user sees all beauty places without crud panel' do
     expect(user.role).to eq('normal')
     sign_in user.email, user.password
 
-    visit '/index'
+    visit '/beauty_places'
     expect(page).to have_content 'Vidal Sassoon'
     expect(page).not_to have_content 'Create'
   end
@@ -24,7 +20,7 @@ describe 'Beauty Place index page' do
     expect(user.role).to eq('owner')
     sign_in user.email, user.password
 
-    visit '/index'
+    visit '/beauty_places'
     expect(page).to have_content 'Vidal Sassoon'
 
     context 'has buttons create, edit and delete' do
