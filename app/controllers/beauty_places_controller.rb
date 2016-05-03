@@ -9,6 +9,15 @@ class BeautyPlacesController < ApplicationController
     authorize @beauty_place
   end
 
+  def create
+    @beauty_place = BeautyPlace.new name: beauty_place_params[:name]
+    @beauty_place.location = Location.new beauty_place_params[:location]
+    @beauty_place.user = current_user
+    @beauty_place.save
+    authorize @beauty_place
+    redirect_to beauty_place_path(@beauty_place)
+  end
+
   def show
     @beauty_place = BeautyPlace.find_by(id: params[:id])
     binding.pry
