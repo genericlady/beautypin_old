@@ -1,9 +1,7 @@
 <div class="navigation-wrapper">
-  <ul class="nav nav-inline">
-  </ul>
   <nav class="navbar navbar-light bg-faded" role="navigation" style="background-color: #">
     <%= link_to 'BeautyPin', root_path, class: 'navbar-brand' %>
-    <div class="nav navbar-nav">
+    <div class="nav navbar-nav pull-right">
       <% if user_signed_in? %>
         <%= link_to "Home", root_path, class: 'nav-item nav-link active' %>
         <%= link_to "Deals", deals_path, class: 'nav-item nav-link' %>
@@ -20,13 +18,5 @@
         <%= link_to "Register", new_user_registration_path, class: 'nav-item nav-link' %>
       <% end %>
     </div>
-
-    <%= form_tag deals_path, method: 'get', class: 'form-inline pull-xs-right' do %>
-      <p>
-        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'mani pedi' %>
-        <%= button_tag 'Search', name: nil, class: "btn btn-outline-success" %>
-      </p>
-    <% end %>
-
   </nav>
 </div>

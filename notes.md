@@ -4,6 +4,8 @@ You don't need to add every possible validation or duplicates,
 such as presence and a minimum length,
 but the models should defend against invalid data.
 
+need to render error messages
+
 # one
 make nested forms that writes to an associated model through
 a custom attribute writer.

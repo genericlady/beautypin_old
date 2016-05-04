@@ -20,20 +20,24 @@ class BeautyPlacePolicy < ApplicationPolicy
     user.admin? || user.owner?
   end
 
-  def update?
-    user.admin?
-  end
-
   def edit?
     update?
   end
 
+  def update?
+    user.admin? || beauty_place_owner?
+  end
+
   def destroy?
-    user.admin? || user.id == record.user.id
+    user.admin? || beauty_place_owner?
   end
 
   def scope
     Pundit.policy_scope!(user, record.class)
+  end
+
+  def beauty_place_owner?
+    user.id == record.user.id
   end
 
   class Scope < Scope
@@ -44,6 +48,7 @@ class BeautyPlacePolicy < ApplicationPolicy
       elsif user.owner?
         user.beauty_places
       else
+        scope.where(published: true)
         # return only published beauty_places
       end
     end

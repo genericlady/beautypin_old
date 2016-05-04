@@ -23,4 +23,8 @@ class Deal < ActiveRecord::Base
     end
   end
 
+  def user_id
+    beauty_place.user.id
+  end
+
 end

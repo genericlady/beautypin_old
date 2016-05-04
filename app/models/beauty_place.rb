@@ -14,7 +14,7 @@ class BeautyPlace < ActiveRecord::Base
   accepts_nested_attributes_for :employees, reject_if: :all_blank
   accepts_nested_attributes_for :services, reject_if: :all_blank
   accepts_nested_attributes_for :location
-  accepts_nested_attributes_for :deals, reject_if: :all_blank
+  accepts_nested_attributes_for :deals
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -26,4 +26,13 @@ class BeautyPlace < ActiveRecord::Base
   def state
     location.state
   end
+
+  def address
+    location.address
+  end
+
+  def location_attributes=(attributes = {})
+    location.update attributes
+  end
+
 end

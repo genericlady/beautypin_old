@@ -15,6 +15,14 @@ class DealPolicy < ApplicationPolicy
     #code
   end
 
+  def update?
+    user.admin? || user.id == record.user_id
+  end
+
+  def destroy?
+    user.admin || user.id == record.user_id
+  end
+
   class Scope < Scope
     def resolve
       if (user.admin? || user.normal?)

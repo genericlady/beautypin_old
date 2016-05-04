@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :beauty_places
   resources :employees
 
+  resources :beauty_places do
+    resources :deals
+  end
+  
   get '/searches/new', to: 'searches#new'
   post '/beauty_places/save', to: 'beauty_places#save'
 
