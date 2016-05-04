@@ -1,19 +1,20 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   resources :users
-  resources :deals
   resources :locations
   resources :beauty_places
   resources :employees
 
+  resources :deals, only: [:index]
   resources :beauty_places do
     resources :deals
+    # resources :deals, shallow: true
   end
-  
+  resources :beauty_places, has_many: :employees, shallow: true
+
   get '/searches/new', to: 'searches#new'
   post '/beauty_places/save', to: 'beauty_places#save'
 
-  # Devise routes
   devise_for :users, :skip => [:sessions]
   as :user do
     get 'sign-in' => 'users/sessions#new', :as => :new_user_session

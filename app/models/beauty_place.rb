@@ -13,8 +13,7 @@ class BeautyPlace < ActiveRecord::Base
 
   accepts_nested_attributes_for :employees, reject_if: :all_blank
   accepts_nested_attributes_for :services, reject_if: :all_blank
-  accepts_nested_attributes_for :location
-  accepts_nested_attributes_for :deals
+  accepts_nested_attributes_for :location, :deals
 
   validates :name, presence: true
   validates :name, uniqueness: true

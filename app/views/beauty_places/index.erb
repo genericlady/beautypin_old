@@ -5,6 +5,7 @@
   <% policy_scope(@beauty_places).each do |place| %>
     <tr>
       <td><%= link_to place.name, beauty_place_path(place) %></td>
+      <td><%= link_to 'deals', beauty_place_deals_path(place) %></td>
       <% if policy(place).update? %>
         <td><%= link_to 'Edit', edit_beauty_place_path(place) %></td>
         <td><%= link_to 'Destroy', beauty_place_path(place), method: :delete %></td>
@@ -18,6 +19,7 @@
   </tbody>
 </table>
 
+<!-- check if user is an owner -->
 <% if policy(BeautyPlace.first).create? %>
   <%= link_to "new place", new_beauty_place_path %>
 <% end %>

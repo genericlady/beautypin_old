@@ -13,7 +13,7 @@
       <% if current_user.normal? %>
         <td><%= link_to 'Make Appointment' %></td>
       <% else %>
-      <td><%= link_to 'Edit' %></td>
+      <td><%= button_to 'Edit', edit_employee_path(employee) %></td>
       <td><%= button_to 'Delete', employee, method: :delete %></td>
       <% end %>
     </tr>
@@ -55,5 +55,6 @@
 <hr>
 <% if policy(beauty_place).beauty_place_owner? %>
   <h3>Create a New Deal</h3>
-  <%= render '/deals/form', deal: @deal %>
+  <!-- make a form that points to another path  -->
+  <!-- /beauty_place/create_deal -->
 <% end %>

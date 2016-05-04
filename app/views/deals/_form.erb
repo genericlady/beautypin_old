@@ -1,18 +1,17 @@
 <%= form_for deal do |f| %>
-  <%= f.text_field :title, placeholder: 'title' %>
-  <%= f.text_field :description, placeholder: 'description' %>
-  <%= f.text_field :discount, placeholder: 'discount 10%, 15%, etc.' %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
 
-  <!-- Select a service -->
-  <h3>Choose a service</h3>
-  <%= f.collection_select :service_ids, current_user.services, :id, :title %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
 
-  <!-- Create a service -->
-  <%= f.fields_for :service do |service_fields| %>
-    ...
-    Delete: <%= service_fields.check_box :_destroy %>
-  <% end %>
-
-  <br>
-  <%= submit_tag 'Create' %>
+  <div class="form-group">
+    <%= f.label :discount %>
+    <%= f.text_field :discount, class: 'form-control', placeholder: '10%, 15%, etc.' %>
+  </div>
+  <%= submit_tag 'Create', beauty_place_deals_path %>
 <% end %>

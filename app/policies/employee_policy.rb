@@ -4,11 +4,16 @@ class EmployeePolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? || binding.pry
+    user.admin?
   end
 
   def permitted_attributes
-    if user.admin? || binding.pry
+  end
+
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
   end
 
   private

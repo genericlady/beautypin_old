@@ -11,8 +11,17 @@ class DealsController < ApplicationController
   end
 
   def new
-    @deal = Deal.new
-    authorize @deal
+    @beauty_place = BeautyPlace.find params[:beauty_place_id]
+    @deal = @beauty_place.deals.build
+    authorize @beauty_place
+  end
+
+  def create
+    # create with mass assignment
+    set_beauty_place
+    @deal = @beauty_place.create deals_params
+    # choose path helper /beauty_places/id/deals
+    binding.pry
   end
 
   def show
@@ -22,10 +31,14 @@ class DealsController < ApplicationController
 
   def destroy
     @deal = Deal.find_by id: params[:id]
-    binding.pry
     authorize @deal
     @deal.delete
     redirect_to :back
+  end
+
+  private
+  def deals_params
+
   end
 
   def search_params

@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <ul class='list-inline search_bar'>
+    <li>Current Location: <%= current_user.city %>, <%= current_user.state %></li>
+    <li><%= render 'partials/search' %>
+</li>
+  </ul>
+<% end %>

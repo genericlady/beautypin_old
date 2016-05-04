@@ -14,6 +14,4 @@
   </tbody>
 </table>
 
-<% if policy(current_user.beauty_places.first).update? %>
-  <%= link_to 'New Deal', new_deal_path %>
-<% end %>
+<%= button_to 'New', new_beauty_place_deal_path, method: :get %>
