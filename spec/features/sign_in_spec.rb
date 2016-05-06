@@ -8,6 +8,7 @@ feature 'Sign in', :devise do
 
   scenario 'user can sign in with valid credentials' do
     user = create(:user)
+    user.confirm
     sign_in(user.email, user.password)
     expect(page).to have_content 'Signed in successfully'
   end

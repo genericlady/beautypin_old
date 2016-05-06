@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
-    raise "not authorized" unless UserPolicy.new(current_user, User).index?
+    @users = policy_scope(User)
   end
 
   def show
