@@ -1,1 +1,8 @@
-<%= render 'beauty_place', beauty_place: @beauty_place %>
+<h2 class='text-xs-center'><%= @beauty_place.name %></h2>
+<p class='text-xs-center'><%= @beauty_place.address %> <%= @beauty_place.city %>, <%= @beauty_place.state %></p>
+<% if policy(@beauty_place).update? %>
+  <p class='text-xs-center'>published: <%= @beauty_place.published %></p>
+<% end %>
+<hr>
+
+<%= render 'deals/deal_list' %>

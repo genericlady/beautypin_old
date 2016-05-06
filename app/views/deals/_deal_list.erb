@@ -1,0 +1,35 @@
+<h2>All deals</h2>
+<!-- <h2>from deal_list</h2> -->
+<table class="table">
+  <tbody>
+  <% @deals.each do |deal| %>
+    <tr>
+      <td><%= deal.title %></td>
+      <td><%= deal.discount %></td>
+      <td><%= deal.description %></td>
+      <% if current_user.owner? %>
+      <td>
+        <!-- deal.beauty_place.id -->
+        <!-- deal.id -->
+        <%= button_to 'Edit', edit_beauty_place_deal_path(deal.beauty_place.id, deal.id), method: :get, class: 'btn btn-primary-outline' %>
+        <%= button_to 'Delete', beauty_place_deal_path(deal.beauty_place.id, deal.id), method: :delete, class: 'btn btn-danger-outline' %>
+      </td>
+      <% elsif current_user.normal? %>
+      <td>
+        <%= button_tag 'Purchase', class: 'btn btn-primary-outline' %>
+      </td>
+      <% end %>
+    </tr>
+  <% end %>
+  <% if current_user.owner? && !@beauty_place.nil? %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+          <%= link_to 'New Deal', new_beauty_place_deal_path(@beauty_place, @deal), method: :get, class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

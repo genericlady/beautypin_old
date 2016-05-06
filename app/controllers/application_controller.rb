@@ -12,8 +12,4 @@ class ApplicationController < ActionController::Base
     redirect_to (request.referrer || root_path)
   end
 
-  def set_beauty_place
-    @beauty_place = BeautyPlace.find(params[:id])
-  end
-
 end

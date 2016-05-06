@@ -1,4 +1,8 @@
 # To Pass the assessment
+* fix scope for owner search
+* search should work for their deals only
+
+implement crud buttons
 
 You don't need to add every possible validation or duplicates,
 such as presence and a minimum length,

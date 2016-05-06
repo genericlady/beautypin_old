@@ -5,7 +5,7 @@ class BeautyPlacesController < ApplicationController
   end
 
   def new
-    @beauty_place = BeautyPlace.new
+    @beauty_place = current_user.beauty_places.build
     @beauty_place.location = Location.new
     authorize @beauty_place
   end
@@ -21,7 +21,13 @@ class BeautyPlacesController < ApplicationController
 
   def show
     @beauty_place = BeautyPlace.find_by id: params[:id]
-    @deal = @beauty_place.deals.new
+    @deals = @beauty_place.deals
+    if @deals.empty?
+      skip_policy_scope
+    else
+      @deals = DealPolicy::Scope.new(current_user, Deal, @beauty_place).resolve
+    end
+    # @deal = @beauty_place.deals.build
     authorize @beauty_place
   end
 

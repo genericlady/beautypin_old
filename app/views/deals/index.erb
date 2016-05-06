@@ -1,17 +1,1 @@
-<h1>Deals</h1>
-
-<table>
-  <tbody>
-  <% policy_scope(@deals).each do |deal| %>
-    </tr>
-        <td><%= link_to deal.title, deal_path(deal)  %></td>
-        <% if policy(deal).update? %>
-          <td><%= link_to 'Edit', edit_deal_path(deal) %></td>
-          <td><%= link_to 'Destroy', deal_path(deal), method: :delete %></td>
-        <% end %>
-    <tr>
-  <% end %>
-  </tbody>
-</table>
-
-<%= button_to 'New', new_beauty_place_deal_path, method: :get %>
+<%= render 'deal_list' %>

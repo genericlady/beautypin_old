@@ -1,4 +1,12 @@
 class DealPolicy < ApplicationPolicy
+  attr_reader :user, :deal, :beauty_place
+
+  def initialize(user, deal, beauty_place = nil)
+    @user = user
+    @deal = deal
+    @beauty_place = beauty_place
+  end
+
   def search?
     permit_all_roles
   end
@@ -11,30 +19,48 @@ class DealPolicy < ApplicationPolicy
     permit_all_roles
   end
 
-  def index
-    #code
+  def index?
+    user.admin? || user.normal? || user.owner?
+  end
+
+  def create?
+    update?
   end
 
   def update?
-    user.admin? || user.id == record.user_id
+    user.admin? || user.id == deal.user_id
   end
 
   def destroy?
-    user.admin || user.id == record.user_id
+    user.admin? || user.id == deal.user_id
+  end
+
+  def permitted_attributes(beauty_place)
+    [:title, :description, :discount] if (user.admin? || user.id == beauty_place.user.id)
   end
 
   class Scope < Scope
+    attr_reader :user, :deal, :beauty_place
+
+    def initialize(user, deal, beauty_place=nil)
+      @user = user
+      @deal = deal
+      @beauty_place = beauty_place
+    end
+
     def resolve
       if (user.admin? || user.normal?)
-        scope.all
-      elsif user.owner?
-        user.deals
+        deal.all
+      elsif user.id == deal.first.user_id
+        @beauty_place.nil? ? user.deals : beauty_place.deals
       else
+        # when deals become searchable to the public
+        # this will return the scope for public
         # NOTE: it would be nice to have an attribute of published
         # scope.where{ published: true }
       end
-        # scope.all
     end
 
   end
+
 end

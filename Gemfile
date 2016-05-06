@@ -15,6 +15,7 @@ gem 'pundit'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'geocoder'
 gem 'geokit-rails'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'pry-rails'
@@ -25,6 +26,7 @@ group :development, :test do
   gem 'byebug'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'letter_opener'
 end
 
 group :development do

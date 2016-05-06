@@ -1,0 +1,2 @@
+class OmniauthCallbackPolicy < ApplicationPolicy
+end

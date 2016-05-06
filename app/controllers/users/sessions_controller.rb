@@ -13,10 +13,9 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
     yield resource if block_given?
-
     current_user.location = Location.new.set_attributes
     current_user.save
-    
+
     respond_with resource, location: after_sign_in_path_for(resource)
   end
 

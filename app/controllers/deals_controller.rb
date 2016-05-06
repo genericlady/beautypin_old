@@ -1,13 +1,26 @@
 class DealsController < ApplicationController
 
   def index
-    if params[:search]
+    if current_user.owner? && !params[:beauty_place_id].nil?
+      @beauty_place = BeautyPlace.find params[:beauty_place_id]
+      if @beauty_place.deals.empty?
+        @deals = @beauty_place.deals
+        skip_policy_scope
+      else
+        @deals = policy_scope(@beauty_place.deals)
+      end
+    elsif params[:search]
       @deals = Deal.search(params[:search])
-      # can policy scope take arguments?
-      policy_scope(@deals)
+      @deals = policy_scope(@deals)
     else
       @deals = policy_scope(Deal)
     end
+  end
+
+  def edit
+    @beauty_place = BeautyPlace.find_by id: params[:beauty_place_id]
+    @deal = @beauty_place.deals.find_by id: params[:id]
+    authorize @deal
   end
 
   def new
@@ -17,11 +30,18 @@ class DealsController < ApplicationController
   end
 
   def create
-    # create with mass assignment
-    set_beauty_place
-    @deal = @beauty_place.create deals_params
-    # choose path helper /beauty_places/id/deals
-    binding.pry
+    @beauty_place = BeautyPlace.find(params[:beauty_place_id])
+    @deal = @beauty_place.deals.create deal_params @beauty_place
+    authorize @deal
+    redirect_to beauty_place_deal_path id: @deal.id
+  end
+
+  def update
+    @beauty_place = BeautyPlace.find_by(params[:beauty_place_id])
+    @deal = Deal.find_by id: params[:id]
+    @deal.update(deal_params(@beauty_place))
+    authorize @deal
+    redirect_to beauty_place_deal_path
   end
 
   def show
@@ -37,8 +57,8 @@ class DealsController < ApplicationController
   end
 
   private
-  def deals_params
-
+  def deal_params(beauty_place)
+    params.require(:deal).permit(policy(Deal).permitted_attributes(beauty_place))
   end
 
   def search_params
