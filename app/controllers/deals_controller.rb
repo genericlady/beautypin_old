@@ -33,15 +33,25 @@ class DealsController < ApplicationController
     @beauty_place = BeautyPlace.find(params[:beauty_place_id])
     @deal = @beauty_place.deals.create deal_params @beauty_place
     authorize @deal
-    redirect_to beauty_place_deal_path id: @deal.id
+    if @beauty_place.valid?
+      redirect_to beauty_place_deal_path id: @deal.id
+    else
+      render :new
+    end
   end
 
   def update
     @beauty_place = BeautyPlace.find_by(params[:beauty_place_id])
-    @deal = Deal.find_by id: params[:id]
-    @deal.update(deal_params(@beauty_place))
-    authorize @deal
-    redirect_to beauty_place_deal_path
+    @deal = @beauty_place.deals.find params[:id]
+    if @deal.update_attributes(deal_params(@beauty_place))
+      authorize @deal
+      redirect_to beauty_place_deal_path
+    else
+    binding.pry
+      authorize @deal
+      render :edit
+    end
+
   end
 
   def show

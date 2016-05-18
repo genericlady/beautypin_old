@@ -49,10 +49,13 @@ class DealPolicy < ApplicationPolicy
     end
 
     def resolve
-      if (user.admin? || user.normal?)
+      if user.admin?
         deal.all
-      elsif user.id == deal.first.user_id
-        @beauty_place.nil? ? user.deals : beauty_place.deals
+      elsif user.normal?
+        deal.all
+        # deal.all.where(published: true)
+      elsif user.owner?
+        user.deals
       else
         # when deals become searchable to the public
         # this will return the scope for public

@@ -11,12 +11,18 @@ class BeautyPlacesController < ApplicationController
   end
 
   def create
-    @beauty_place = BeautyPlace.new name: beauty_place_params[:name]
-    @beauty_place.location = Location.new beauty_place_params[:location_attributes]
-    @beauty_place.user = current_user
-    @beauty_place.save
-    authorize @beauty_place
-    redirect_to beauty_place_path(@beauty_place)
+    @beauty_place = current_user.beauty_places.new beauty_place_params
+    binding.pry
+    if @beauty_place.valid?
+      @beauty_place.location = Location.new beauty_place_params[:location_attributes]
+      @beauty_place.user = current_user
+      @beauty_place.save
+      authorize @beauty_place
+      redirect_to beauty_place_path id: @beauty_place.id
+    else
+      authorize @beauty_place
+      render :new
+    end
   end
 
   def show

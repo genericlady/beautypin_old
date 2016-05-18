@@ -25,9 +25,14 @@ ActiveRecord::Schema.define(version: 20160506145515) do
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
 
   create_table "beauty_place_locations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "beauty_place_id"
+    t.integer  "location_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "beauty_place_locations", ["beauty_place_id"], name: "index_beauty_place_locations_on_beauty_place_id"
+  add_index "beauty_place_locations", ["location_id"], name: "index_beauty_place_locations_on_location_id"
 
   create_table "beauty_places", force: :cascade do |t|
     t.string   "name"

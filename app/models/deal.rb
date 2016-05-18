@@ -7,7 +7,7 @@ class Deal < ActiveRecord::Base
   has_one :locatable
   has_one :location, through: :locatable
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { minimum: 4 }
   validates :discount, presence: true
   validates :description, presence: true
 
@@ -26,5 +26,11 @@ class Deal < ActiveRecord::Base
   def user_id
     beauty_place.user.id
   end
+
+  # def update_attributes(title: nil, description: nil, disount: nil)
+  #   self.title = title
+  #   self.description = description
+  #   self.discount = discount
+  # end
 
 end

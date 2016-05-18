@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <%= render 'partials/nav' %>
 <%= render 'partials/search_bar' %>
+
+<!-- Auth errors -->
 <% flash.each do |message_type, message| %>
   <div id="flash" class="flash-<%= message_type %>"><%= message %></div>
 <% end %>

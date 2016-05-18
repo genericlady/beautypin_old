@@ -13,9 +13,10 @@ class BeautyPlace < ActiveRecord::Base
 
   accepts_nested_attributes_for :employees, reject_if: :all_blank
   accepts_nested_attributes_for :services, reject_if: :all_blank
-  accepts_nested_attributes_for :location, :deals
+  accepts_nested_attributes_for :location, reject_if: :all_blank
+  accepts_nested_attributes_for :deals, reject_if: :all_blank
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 4 }
   validates :name, uniqueness: true
 
   def city
@@ -31,7 +32,11 @@ class BeautyPlace < ActiveRecord::Base
   end
 
   def location_attributes=(attributes = {})
-    location.update attributes
+    if self.new_record?
+      self.location = Location.new attributes
+    else
+      location.update attributes
+    end
   end
 
 end
