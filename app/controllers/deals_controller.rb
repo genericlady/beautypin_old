@@ -1,5 +1,11 @@
 class DealsController < ApplicationController
 
+  def discount
+    @deals = Deal.sort_discount
+    authorize @deals[0]
+    render :index
+  end
+
   def index
     if current_user.owner? && !params[:beauty_place_id].nil?
       @beauty_place = BeautyPlace.find params[:beauty_place_id]
@@ -9,7 +15,7 @@ class DealsController < ApplicationController
       else
         @deals = policy_scope(@beauty_place.deals)
       end
-    elsif params[:search]
+    elsif @last_search = params[:search]
       @deals = Deal.search(params[:search])
       @deals = policy_scope(@deals)
     else
@@ -22,6 +28,7 @@ class DealsController < ApplicationController
     @deal = @beauty_place.deals.find_by id: params[:id]
     authorize @deal
   end
+
 
   def new
     @beauty_place = BeautyPlace.find params[:beauty_place_id]

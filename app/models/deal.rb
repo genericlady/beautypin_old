@@ -23,6 +23,12 @@ class Deal < ActiveRecord::Base
     end
   end
 
+  def self.sort_discount
+    self.all.sort_by do |deal|
+      deal.discount
+    end
+  end
+
   def user_id
     beauty_place.user.id
   end

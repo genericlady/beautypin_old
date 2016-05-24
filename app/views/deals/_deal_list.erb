@@ -1,6 +1,10 @@
 <h2>All deals</h2>
-<!-- <h2>from deal_list</h2> -->
 <table class="table">
+  <tr>
+    <th>title</th>
+    <th><%= link_to 'discount', '#', id: 'foo' %></th>
+    <th>description</th>
+  </tr>
   <tbody>
   <% @deals.each do |deal| %>
     <tr>
@@ -9,8 +13,6 @@
       <td><%= deal.description %></td>
       <% if current_user.owner? %>
       <td>
-        <!-- deal.beauty_place.id -->
-        <!-- deal.id -->
         <%= button_to 'Edit', edit_beauty_place_deal_path(deal.beauty_place.id, deal.id), method: :get, class: 'btn btn-primary-outline' %>
         <%= button_to 'Delete', beauty_place_deal_path(deal.beauty_place.id, deal.id), method: :delete, class: 'btn btn-danger-outline' %>
       </td>
@@ -26,9 +28,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td>
-          <%= link_to 'New Deal', new_beauty_place_deal_path(@beauty_place, @deal), method: :get, class: 'btn btn-primary' %>
-      </td>
+      <td><%= link_to 'New Deal', new_beauty_place_deal_path(@beauty_place, @deal), method: :get, class: 'btn btn-primary' %></td>
     </tr>
   <% end %>
   </tbody>

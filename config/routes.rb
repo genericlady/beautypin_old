@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     # resources :deals, shallow: true
   end
 
+  get '/discount', to: 'deals#discount', as: 'deals_discount'
   get '/searches/new', to: 'searches#new'
   post '/beauty_places/save', to: 'beauty_places#save'
 

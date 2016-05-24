@@ -7,6 +7,10 @@ class DealPolicy < ApplicationPolicy
     @beauty_place = beauty_place
   end
 
+  def discount?
+    user.normal?
+  end
+
   def search?
     permit_all_roles
   end
