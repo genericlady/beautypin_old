@@ -3,7 +3,7 @@
     <ul class='list-inline'>
       <li class='list-inline-item'>Current Location:</li>
       <li class='list-inline-item'><%= text_field_tag :location, params[:location], class: 'form-control', value: (current_user.city + ' ' + current_user.state) %></li>
-      <li class='list-inline-item'><%= text_field_tag :search, params[:search], class: 'form-control', value: @last_search || ''  %></li>
+      <li class='list-inline-item'><%= text_field_tag :search, params[:search], class: 'form-control', id: "lastSearch", value: @last_search || ''  %></li>
       <li class='list-inline-item'><%= button_tag 'Search', name: nil, class: "btn btn-primary-outline" %></li>
     </ul>
   <% end %>
