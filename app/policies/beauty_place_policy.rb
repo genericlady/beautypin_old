@@ -49,7 +49,6 @@ class BeautyPlacePolicy < ApplicationPolicy
         user.beauty_places
       else
         scope.where(published: true)
-        # return only published beauty_places
       end
     end
 

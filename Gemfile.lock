@@ -246,7 +246,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
+  active_model_serializers (~> 0.10.0)
   bootstrap (~> 4.0.0.alpha3)
   byebug
   capybara

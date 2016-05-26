@@ -18,7 +18,7 @@ Service.create(title: 'Pedicure', price: '15')
 Service.create(title: 'Blowdry', price: '20')
 Service.create(title: 'Juviderm Injection', price: '200')
 
-beauty_place = owner.beauty_places.create(name: 'Sassoon')
+beauty_place = owner.beauty_places.create(name: 'Sassoon', published: true)
 beauty_place.employees.create(name: 'Jessica')
 beauty_place.employees.create(name: 'Beth')
 beauty_place.employees.create(name: 'Scarlet')
@@ -48,7 +48,7 @@ beauty_place.deals.create(
                         )
 beauty_place.location = Location.create(city: 'new york', state: 'ny')
 
-beauty_place2 = BeautyPlace.create!(name: 'Thomas A. Anderson Capital City Spa')
+beauty_place2 = BeautyPlace.create!(name: 'Thomas A. Anderson Capital City Spa', published: true)
 beauty_place2.employees.create(name: 'Dujour')
 beauty_place2.employees.create(name: 'Fiona Johnson')
 beauty_place2.deals.create(

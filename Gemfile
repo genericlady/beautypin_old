@@ -16,7 +16,7 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'geocoder'
 gem 'geokit-rails'
 gem 'omniauth-facebook'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'kaminari'
 
 group :development, :test do

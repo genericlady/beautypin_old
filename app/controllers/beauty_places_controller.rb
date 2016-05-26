@@ -2,6 +2,10 @@ class BeautyPlacesController < ApplicationController
 
   def index
     @beauty_places = policy_scope BeautyPlace
+    respond_to do |format|
+      format.html
+      format.json { render json: { deals: @beauty_places } }
+    end
   end
 
   def new

@@ -1,25 +1,18 @@
 <h1>Beauty Places</h1>
-
-<table class="table">
-  <tbody>
-  <% policy_scope(@beauty_places).each do |place| %>
-    <tr>
-      <td><%= link_to place.name, beauty_place_path(place) %></td>
-      <td><%= link_to 'deals', beauty_place_deals_path(place) %></td>
-      <% if policy(place).update? %>
-        <td><%= link_to 'Edit', edit_beauty_place_path(place) %></td>
-        <td><%= link_to 'Destroy', beauty_place_path(place), method: :delete %></td>
-      <% else %>
-        <td><%= place.address %></td>
-        <td><%= place.city %></td>
-        <td><%= place.state %></td>
-      <% end %>
-    </tr>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <% @beauty_places.each do |place| %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <%= place.name %> |
+        <a id='beautyPlaceDeals' data-toggle="collapse" data-parent="#accordion" href=<%= beauty_place_deals_path(place) %> aria-expanded="true" aria-controls="collapseOne">
+           number of deals: <%= place.deals.length %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    </div>
+  </div>
   <% end %>
-  </tbody>
-</table>
-
-<!-- check if user is an owner -->
-<% if policy(BeautyPlace.first).create? %>
-  <%= link_to "new place", new_beauty_place_path %>
-<% end %>
+</div>
