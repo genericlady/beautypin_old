@@ -1,6 +1,7 @@
 class DealsController < ApplicationController
 
   def discount
+    @deals = Deal.search(params[:search])
     @deals = Deal.sort_discount
     authorize @deals[0]
     render :index
@@ -13,13 +14,13 @@ class DealsController < ApplicationController
         @deals = @beauty_place.deals
         skip_policy_scope
       else
-        @deals = policy_scope(@beauty_place.deals)
+        @deals = policy_scope(@beauty_place.deals.page params[:page])
       end
     elsif @last_search = params[:search]
-      @deals = Deal.search(params[:search])
+      @deals = Deal.search(params[:search]).page params[:page]
       @deals = policy_scope(@deals)
     else
-      @deals = policy_scope(Deal)
+      @deals = policy_scope(Deal).page params[:page]
     end
   end
 
@@ -54,7 +55,6 @@ class DealsController < ApplicationController
       authorize @deal
       redirect_to beauty_place_deal_path
     else
-    binding.pry
       authorize @deal
       render :edit
     end

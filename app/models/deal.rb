@@ -19,13 +19,7 @@ class Deal < ActiveRecord::Base
     if search
       where("title like ?", "%#{search}%")
     else
-      find(:all)
-    end
-  end
-
-  def self.sort_discount
-    self.all.sort_by do |deal|
-      deal.discount
+      Deal.all
     end
   end
 

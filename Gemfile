@@ -16,6 +16,8 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'geocoder'
 gem 'geokit-rails'
 gem 'omniauth-facebook'
+gem 'active_model_serializers'
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry-rails'
@@ -26,10 +28,14 @@ group :development, :test do
   gem 'byebug'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'letter_opener'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'letter_opener'
+
 end

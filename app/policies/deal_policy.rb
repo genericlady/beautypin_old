@@ -7,6 +7,10 @@ class DealPolicy < ApplicationPolicy
     @beauty_place = beauty_place
   end
 
+  def deals?
+    user.normal? || user.admin?
+  end
+
   def discount?
     user.normal?
   end
@@ -44,27 +48,21 @@ class DealPolicy < ApplicationPolicy
   end
 
   class Scope < Scope
-    attr_reader :user, :deal, :beauty_place
+    attr_reader :user, :deals, :beauty_place
 
-    def initialize(user, deal, beauty_place=nil)
+    def initialize(user, deals, beauty_place=nil)
       @user = user
-      @deal = deal
+      @deals = deals
       @beauty_place = beauty_place
     end
 
     def resolve
       if user.admin?
-        deal.all
+        deals
       elsif user.normal?
-        deal.all
-        # deal.all.where(published: true)
+        deals
       elsif user.owner?
         user.deals
-      else
-        # when deals become searchable to the public
-        # this will return the scope for public
-        # NOTE: it would be nice to have an attribute of published
-        # scope.where{ published: true }
       end
     end
 

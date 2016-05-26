@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_filter :authenticate_user!
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
+  after_action :verify_authorized, except: [:index, :deals, :discount_descending, :discount_ascending]
+  after_action :verify_policy_scoped, only: [:index, :deals, :discount_descending, :discount_ascending]
   protect_from_forgery with: :exception
 
   private
