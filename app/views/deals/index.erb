@@ -1,6 +1,7 @@
 <h2>All deals</h2>
 <table id="dealsTable" class="table">
   <tr>
+    <th>place</th>
     <th>title</th>
     <th><%= link_to 'discount', discount_descending_path, id: 'discount' %></th>
     <th>description</th>
@@ -9,6 +10,7 @@
 
   <% @deals.each do |deal| %>
     <tr>
+      <td><%= deal.beauty_place.name %></td>
       <td><%= deal.title %></td>
       <td><%= deal.discount %></td>
       <td><%= deal.description %></td>

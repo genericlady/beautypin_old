@@ -36,13 +36,17 @@ class BeautyPlacesController < ApplicationController
     else
       @deals = DealPolicy::Scope.new(current_user, Deal, @beauty_place).resolve
     end
-    # @deal = @beauty_place.deals.build
     authorize @beauty_place
+    respond_to do |format|
+      format.html
+      format.json { render json: @beauty_place }
+    end
   end
 
   def edit
     @beauty_place = BeautyPlace.find_by id: params[:id]
     authorize @beauty_place
+
   end
 
   def update

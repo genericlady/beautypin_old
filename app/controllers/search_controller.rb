@@ -3,7 +3,7 @@ class SearchController < ApplicationController
     @deals = policy_scope(Deal.search(params[:search]))
 
     respond_to do |format|
-      format.json { render json: { deals: @deals } }
+      format.json { render json: { deals: @deals, include: 'beauty_place' } }
       format.html { render 'deals/index' }
     end
   end
@@ -14,7 +14,7 @@ class SearchController < ApplicationController
                               .order(discount: :desc))
 
     respond_to do |format|
-      format.json { render json: { deals: @deals } }
+      format.json { render json: { deals: @deals }, include: 'beauty_place' }
       format.html { render 'deals/index' }
     end
 
@@ -24,7 +24,7 @@ class SearchController < ApplicationController
     @deals = policy_scope(Deal.search(params[:search]))
 
     respond_to do |format|
-      format.json { render json: { deals: @deals.order(discount: :asc) } }
+      format.json { render json: { deals: @deals.order(discount: :asc), include: 'beauty_place' } }
       format.html { render 'deals/index' }
     end
   end

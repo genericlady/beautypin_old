@@ -22,6 +22,10 @@ class DealsController < ApplicationController
     else
       @deals = policy_scope(Deal).page params[:page]
     end
+    respond_to do |format|
+      format.html
+      format.json { render json: { deals: @deals } }
+    end
   end
 
   def edit
@@ -64,6 +68,10 @@ class DealsController < ApplicationController
   def show
     @deal = Deal.find_by id: params[:id]
     authorize @deal
+    respond_to do |format|
+      format.html
+      format.json { render json: { deal: @deal }, include: 'beauty_place' }
+    end
   end
 
   def destroy
