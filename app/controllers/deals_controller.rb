@@ -29,8 +29,8 @@ class DealsController < ApplicationController
   end
 
   def edit
-    @beauty_place = BeautyPlace.find_by id: params[:beauty_place_id]
-    @deal = @beauty_place.deals.find_by id: params[:id]
+    @deal = Deal.find(params[:id])
+    @beauty_place = @deal.beauty_place
     authorize @deal
   end
 

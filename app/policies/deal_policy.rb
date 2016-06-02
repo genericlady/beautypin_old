@@ -7,6 +7,10 @@ class DealPolicy < ApplicationPolicy
     @beauty_place = beauty_place
   end
 
+  def deals_edit?
+    update?
+  end
+
   def deals?
     user.normal? || user.admin?
   end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :beauty_places
   resources :employees
 
-  resources :deals, only: [:index, :show]
+  resources :deals, only: [:index, :show, :edit]
   # resources :deals, do
   #   resources :searches
   # end
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/search/deals', to: 'search#deals'
   get '/sort_by_discount', to: 'search#discount_descending', as: 'discount_descending'
+  get '/owners_deals/:id/edit', to: 'owners#deals_edit', as: 'owner_deals_edit'
   post '/beauty_places/save', to: 'beauty_places#save'
 
   devise_for :users, :skip => [:sessions],
