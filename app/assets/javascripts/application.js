@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require beauty_places
+//= require deals
+//= require search
 //= require_tree .

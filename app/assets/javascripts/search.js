@@ -3,23 +3,34 @@ $(function() {
 });
 
 function searchListeners() {
-  $('button.search').click(function getDeals(event) {
+  $('button.search').click(function(event) {
     var searchCriteria = $('#lastSearch').val();
-    event.preventDefault;
-    // Pass data to params hash
     $.get('/deals.json', { search: searchCriteria })
-      .done(function handleDeals(response) {
+      .done(function(response) {
         var elements = '';
+
         var deals = response['deals'];
         for (let deal of deals) {
-          elements += '<tr>'
-          elements += '<td>' + deal.beauty_place['name'] + '</td>';
-          elements += '<td>' + deal['title'] + '</td>';
-          elements += '<td>' + deal['discount'] + '</td>';
-          elements += '<td>' + deal['description']
-          elements += '</tr>'
+          // make sure deal can be serialized with beauty_place
+          var newDeal = new Deal(deal);
+          newDeal.beauty_place = new BeautyPlace(newDeal.beauty_place);
+          elements += newDeal.renderTR();
+
         }
         $('#dealsTableBody').html(elements)
       });
+    event.preventDefault;
   });
 }
+
+// $("a[data-remote]").on("click", function(e){
+//   e.preventDefault
+//   var url = $(this).attr("href")
+//
+//   $.ajax({
+//     url: url,
+//     dataType: "script"
+//   }, function(js){
+//     eval(js);
+//   })
+// })

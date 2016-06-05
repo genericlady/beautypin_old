@@ -3,16 +3,16 @@
   <tr>
     <th>place</th>
     <th>title</th>
-    <th><%= link_to 'discount', discount_descending_path, id: 'discount' %></th>
+    <th><%= link_to 'discount', discount_descending_path, id: 'discount', 'sort-by-discount': '#' %></th>
     <th>description</th>
   </tr>
   <tbody id='dealsTableBody'>
 
   <% @deals.each do |deal| %>
     <tr>
-      <td><%= deal.beauty_place.name %></td>
-      <td><%= deal.title %></td>
-      <td><%= deal.discount %></td>
+      <td><%= link_to deal.beauty_place.name, beauty_place_deal_path(deal, deal.beauty_place), remote: true %></td>
+      <td><%= link_to deal.title, deal_path(deal), 'deal-show': '#', remote: true  %></td>
+      <td><%= link_to deal.discount, remote: true %></td>
       <td><%= deal.description %></td>
       <!-- <% if current_user.owner? %>
       <td>

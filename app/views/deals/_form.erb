@@ -1,4 +1,4 @@
-<%= form_for [@beauty_place, @deal], id: 'dealForm' do |deal_form| %>
+<%= form_for [@beauty_place, @deal], remote: true do |deal_form| %>
   <% if @deal.errors.any? %>
     <%= render 'partials/form_errors', target: @deal %>
   <% end %>
@@ -17,5 +17,5 @@
     <%= deal_form.label :discount %>
     <%= deal_form.text_field :discount, class: 'form-control', placeholder: '10%, 15%, etc.' %>
   </div>
-  <%= deal_form.submit 'Submit', id: 'dealFormSubmit' %>
+  <%= deal_form.submit 'Submit' %>
 <% end %>
