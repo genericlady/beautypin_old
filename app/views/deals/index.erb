@@ -12,7 +12,7 @@
     <tr>
       <td><%= link_to deal.beauty_place.name, beauty_place_deal_path(deal, deal.beauty_place), remote: true %></td>
       <td><%= link_to deal.title, deal_path(deal), 'deal-show': '#', remote: true  %></td>
-      <td><%= link_to deal.discount, remote: true %></td>
+      <td><%= link_to deal.discount %></td>
       <td><%= deal.description %></td>
       <!-- <% if current_user.owner? %>
       <td>

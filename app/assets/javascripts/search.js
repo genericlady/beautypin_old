@@ -17,7 +17,7 @@ function searchListeners() {
           elements += newDeal.renderTR();
 
         }
-        $('#dealsTableBody').html(elements)
+        $('#dealsTableBody').html(elements);
       });
     event.preventDefault;
   });

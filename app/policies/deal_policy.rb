@@ -66,7 +66,7 @@ class DealPolicy < ApplicationPolicy
       elsif user.normal?
         deals
       elsif user.owner?
-        user.deals
+        deals
       end
     end
 

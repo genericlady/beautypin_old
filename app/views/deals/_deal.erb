@@ -6,5 +6,5 @@
 <ul>
 
 <% if current_user == deal.beauty_place.user %>
-  <%= link_to 'Edit', edit_deal_path(deal), remote: true %>
+  <%= link_to 'Edit', edit_deal_path(deal), 'edit-deal': '#', remote: true %>
 <% end %>

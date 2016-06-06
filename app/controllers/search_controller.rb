@@ -10,8 +10,8 @@ class SearchController < ApplicationController
 
   def discount_descending
     @deals = policy_scope(Deal.search(params[:search])
-                              .page(params[:page])
-                              .order(discount: :desc))
+                              .order(discount: :desc)
+                              .page(params[:page]))
 
     respond_to do |format|
       format.json { render json: { deals: @deals }, include: 'beauty_place' }
@@ -21,7 +21,9 @@ class SearchController < ApplicationController
   end
 
   def discount_ascending
-    @deals = policy_scope(Deal.search(params[:search]))
+    @deals = policy_scope(Deal.search(params[:search])
+                              .order(discount: :asc)
+                              .page(params[:page]))
 
     respond_to do |format|
       format.json { render json: { deals: @deals.order(discount: :asc), include: 'beauty_place' } }
