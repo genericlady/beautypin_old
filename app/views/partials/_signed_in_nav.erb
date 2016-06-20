@@ -1,5 +1,5 @@
 <div class="nav signed-in-nav">
-    <%= link_to "Deals", deals_path, class: 'nav-item btn btn-secondary-outline' %>
+    <%= link_to "Deals", '#', class: 'nav-item btn btn-secondary-outline', data: {'nav-deals': deals_path} %>
     <%= link_to "BeautyPlaces", beauty_places_path, class: 'nav-item btn btn-secondary-outline' %>
     <% if current_user.admin? %>
       <%= link_to "Users", users_path, class: 'nav-item btn btn-secondary-outline' %>

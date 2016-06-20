@@ -1,11 +1,8 @@
-# Builds the first list of deals based off of IP Address
+# features
 
-# ideas for features
-* fix scope for owner search
-* search should work for their deals only
-* subscribe to service option
+# tests
+RSpec - Passing
 
-# Versions
+# note
 
-alpha_v01:
-* implementing nested resource routes
+# Version info

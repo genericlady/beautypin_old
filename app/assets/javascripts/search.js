@@ -22,15 +22,3 @@ function searchListeners() {
     event.preventDefault;
   });
 }
-
-// $("a[data-remote]").on("click", function(e){
-//   e.preventDefault
-//   var url = $(this).attr("href")
-//
-//   $.ajax({
-//     url: url,
-//     dataType: "script"
-//   }, function(js){
-//     eval(js);
-//   })
-// })

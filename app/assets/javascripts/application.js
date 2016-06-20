@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require beauty_places
 //= require deals
+//= require nav
 //= require search
 //= require_tree .
