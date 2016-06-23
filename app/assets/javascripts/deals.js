@@ -6,44 +6,59 @@ $(function() {
 });
 
 var Deal = function(attributes) {
+  this.id = attributes.id
   this.title = attributes.title;
   this.discount = attributes.discount;
   this.description = attributes.description;
 }
 
+Deal.prototype.getTemplate = Handlebars.getTemplate;
+// Deal.getTemplate(model, filename);
 Deal.prototype.renderTR = function() {
   let elements = '';
+  let showLink = '<a href="#" data-deal-show="/deals/' + this.id + '" data-remote="true">' + this.title + '</a>';
   elements += '<tr>';
-  elements += '<td>' + this.beautyPlace.name + '</td>';
-  elements += '<td>' + this.title + '</td>';
+  elements += '<td>' + this.beautyPlace.name  + '</td>';
+  elements += '<td>' + showLink + '</td>';
   elements += '<td>' + this.discount + '</td>';
   elements += '<td>' + this.description;
   elements += '</tr>';
   return elements;
 };
 
+Deal.prototype.renderForm = function() {
+  let elements = '';
+  elements += ''
+};
+
 Deal.prototype.renderTable = function(tableRows) {
   let elements = [];
+  elements.push('<table id="dealsTable" class="table">');
+  elements.push('<tr><th>place</th><th>title</th>');
+  elements.push('<th><a href="/sort_by_discount" data-remote="true"></a></th>');
+  elements.push('<th>description</th>');
+  elements.push('</tr>');
   elements.push('<tbody id="dealsTableBody">');
   elements.push(tableRows);
   elements.push('</tbody>');
+  elements.push('</table>')
   return elements.join('');
 };
 
 Deal.prototype.renderShow = function() {
   let elements = '';
-  elements += '</ul>';
+  let url = '/deals/' + this.id + '/edit'
+  elements += '<ul>';
   elements += '<li>Place of Beauty: ' + this.beautyPlace.name + '</li>';
   elements += '<li>title: ' + this.title + '</li>';
   elements += '<li>description: ' + this.description + '</li>';
   elements += '<li>discount: ' + this.discount + '</li>';
-  elements += '<ul>';
+  elements += '</ul>';
   return elements;
 };
 
 function onSortByDiscount() {
   $( 'a[sort-by-discount]' ).on("click", function(event) {
-    event.preventDefault;
 
     let searchCriteria = $( '#lastSearch' ).val();
     let note = '';
@@ -60,12 +75,25 @@ function onSortByDiscount() {
       dealsTableBody.html(note);
     });
 
+    event.preventDefault;
   });
 }
 
 function onDealEditButton() {
-  $('a[data-edit]').on('click', function(e) {
-    e.stopPropogation;
+  $('body').on('click', 'a[data-edit]', function(event) {
+    url = this.href;
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      method: 'GET'
+    }).success(function(response) {
+      // render edit
+      // deal.renderEditPartial()
+    }).fail(function(response) {
+      console.log('Something went wrong: ' + response);
+    });
+
+    event.stopPropogation;
   });
 }
 
@@ -76,7 +104,7 @@ function onDealUpdateButton() {
       let dealParams = $form.serializeArray();
 
       $.post(url, dealParams).done(function(html){
-        let mainElement = $( 'main' );
+        let mainElement = $('body > main');
         clearHTML(mainElement);
         mainElement.append(html);
       });
@@ -87,20 +115,24 @@ function onDealUpdateButton() {
 }
 
 function onDataShow() {
-  $("[data-deal-show]").on("click", function(event) {
+  $('body').on("click", "a[data-deal-show]", function(event) {
     url = this.dataset.dealShow;
+    let mainElement = $('body > main');
 
     $.ajax({
       url: url,
       dataType: "json",
       method: "GET"
     }).success(function(json) {
-      var deal = new Deal(json['deal']);
+      let deal = new Deal(json['deal']);
       deal.beautyPlace = new BeautyPlace(json['beauty_place']);
-      // deal needs the name of the salon it belongs to
-      $('main').html(deal.renderShow());
+      let html = deal.renderShow();
+      clearHTML(mainElement);
+      mainElement.append(html);
+
+    }).fail(function(response) {
+      console.log('sorry something went wrong' + response);
     });
-    event.preventDefault;
 
   });
 

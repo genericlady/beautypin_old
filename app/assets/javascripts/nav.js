@@ -1,11 +1,19 @@
 $(function() {
   onNavDeals();
+  onNavbarBrand();
 });
+
+function onNavbarBrand() {
+  var navbarBrand =  $('body > navbar-brand');
+  $('body').on('click', '.navbar-brand', function(event) {
+    console.log("i'm over this it's time for handlebars");
+  });
+};
 
 function onNavDeals() {
   var tableRows = '';
 
-  $('[data-nav-deals]').on("click", function(event) {
+  $('body').on("click", '[data-nav-deals]', function(event) {
     let url = this.dataset.navDeals;
 
     $.ajax({
@@ -19,7 +27,6 @@ function onNavDeals() {
         deal.beautyPlace = deals[i].beauty_place;
         tableRows += deal.renderTR();
       }
-      debugger;
       $('main').html(Deal.prototype.renderTable(tableRows));
     }).fail(function() {
       console.log('onNavDeals ajax call fail on /deals');

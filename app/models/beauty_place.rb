@@ -1,7 +1,4 @@
 class BeautyPlace < ActiveRecord::Base
-  has_many :deals
-  has_many :services, through: :deals
-
   has_many :employments
   has_many :employees, through: :employments
 
@@ -12,12 +9,16 @@ class BeautyPlace < ActiveRecord::Base
   has_one :location, through: :locatable
 
   accepts_nested_attributes_for :employees, reject_if: :all_blank
-  accepts_nested_attributes_for :services, reject_if: :all_blank
+  # accepts_nested_attributes_for :services, reject_if: :all_blank
   accepts_nested_attributes_for :location, reject_if: :all_blank
-  accepts_nested_attributes_for :deals, reject_if: :all_blank
+  # accepts_nested_attributes_for :deals, reject_if: :all_blank
 
   validates :name, presence: true, length: { minimum: 4 }
   validates :name, uniqueness: true
+
+  def owner
+    self.user
+  end
 
   def city
     location.city

@@ -4,15 +4,12 @@ Rails.application.routes.draw do
   resources :beauty_places
   resources :employees
 
-  resources :deals, only: [:index, :show, :edit]
-  # resources :deals, do
-  #   resources :searches
-  # end
+  resources :deals, only: [:index, :show]
+  get '/owners/edit_deal/:id', to: 'deals#edit'
 
   resources :beauty_places, has_many: :employees, shallow: true
   resources :beauty_places do
     resources :deals
-    # resources :deals, shallow: true
   end
 
   get '/search/deals', to: 'search#deals'
@@ -32,6 +29,6 @@ Rails.application.routes.draw do
     delete 'sign-out' => 'users/sessions#destroy', :as => :destroy_user_session
   end
 
-  # must be below devise_for for
+  # must be below devise_for
   resources :users, only: [:index, :show, :destroy, :update, :delete]
 end

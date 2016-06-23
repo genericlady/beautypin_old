@@ -1,15 +1,7 @@
 class DealsController < ApplicationController
 
   def index
-    if current_user.owner? && !params[:beauty_place_id].nil?
-      @beauty_place = BeautyPlace.find params[:beauty_place_id]
-      if @beauty_place.deals.empty?
-        @deals = @beauty_place.deals
-        skip_policy_scope
-      else
-        @deals = policy_scope(@beauty_place.deals.page params[:page])
-      end
-    elsif @last_search = params[:search]
+    if @last_search = params[:search]
       @deals = Deal.search(params[:search]).page params[:page]
       @deals = policy_scope(@deals)
     else

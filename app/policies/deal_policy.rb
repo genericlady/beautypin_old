@@ -7,10 +7,6 @@ class DealPolicy < ApplicationPolicy
     @beauty_place = beauty_place
   end
 
-  def deals_edit?
-    update?
-  end
-
   def deals?
     user.normal? || user.admin?
   end
@@ -32,10 +28,14 @@ class DealPolicy < ApplicationPolicy
   end
 
   def index?
-    user.admin? || user.normal? || user.owner?
+    user.admin? || user.normal?
   end
 
   def create?
+    update?
+  end
+
+  def edit_deal?
     update?
   end
 
@@ -64,8 +64,6 @@ class DealPolicy < ApplicationPolicy
       if user.admin?
         deals
       elsif user.normal?
-        deals
-      elsif user.owner?
         deals
       end
     end
