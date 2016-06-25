@@ -42,7 +42,7 @@ Deal.prototype.renderTable = function(tableRows) {
 
 Deal.prototype.renderShow = function() {
   var elements = '';
-  let url = '/deals/' + this.id + '/edit'
+  let url = '/deals/' + this.id + '/edit';
   elements += '<ul>';
   elements += '<li>Place of Beauty: ' + this.beautyPlace.name + '</li>';
   elements += '<li>title: ' + this.title + '</li>';
