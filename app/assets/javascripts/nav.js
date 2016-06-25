@@ -23,7 +23,7 @@ function onNavDeals() {
     }).success(function(deals) {
 
       for (var i = 0; i < deals.length; i++) {
-        let deal = new Deal(deals[i]);
+        var deal = new Deal(deals[i]);
         deal.beautyPlace = deals[i].beauty_place;
         tableRows += deal.renderTR();
       }

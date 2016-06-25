@@ -10,7 +10,7 @@ function searchListeners() {
         var elements = '';
 
         var deals = response['deals'];
-        for (let deal of deals) {
+        for (var deal of deals) {
           // make sure deal can be serialized with beauty_place
           var newDeal = new Deal(deal);
           newDeal.beauty_place = new BeautyPlace(newDeal.beauty_place);

@@ -62,7 +62,7 @@ function onSortByDiscount() {
     $.get(this.href, { search: searchCriteria }, function(response) {
       for (var i = 0; i < response.deals.length; i++) {
         var response = response.deals[i];
-        let deal = new Deal($response);
+        var deal = new Deal($response);
         deal.beautyPlace = new BeautyPlace(response.beautyPlace);
         note += deal.renderTR();
       };
@@ -96,7 +96,7 @@ function onDealUpdateButton() {
   $( 'form.edit_deal' ).on("submit", function(event) {
       let $form = $( this );
       let url = $form.attr('action');
-      let dealParams = $form.serializeArray();
+      var dealParams = $form.serializeArray();
 
       $.post(url, dealParams).done(function(html){
         let mainElement = $('body > main');
@@ -119,7 +119,7 @@ function onDataShow() {
       dataType: "json",
       method: "GET"
     }).success(function(json) {
-      let deal = new Deal(json['deal']);
+      var deal = new Deal(json['deal']);
       deal.beautyPlace = new BeautyPlace(json['beauty_place']);
       let html = deal.renderShow();
       clearHTML(mainElement);
