@@ -61,7 +61,7 @@ function onSortByDiscount() {
 
     $.get(this.href, { search: searchCriteria }, function(response) {
       for (var i = 0; i < response.deals.length; i++) {
-        let response = response.deals[i];
+        var response = response.deals[i];
         let deal = new Deal($response);
         deal.beautyPlace = new BeautyPlace(response.beautyPlace);
         note += deal.renderTR();
