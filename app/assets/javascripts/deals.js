@@ -16,7 +16,7 @@ Deal.prototype.getTemplate = Handlebars.getTemplate;
 // Deal.getTemplate(model, filename);
 Deal.prototype.renderTR = function() {
   var elements = '';
-  let showLink = '<a href="#" data-deal-show="/deals/' + this.id + '" data-remote="true">' + this.title + '</a>';
+  var showLink = '<a href="#" data-deal-show="/deals/' + this.id + '" data-remote="true">' + this.title + '</a>';
   elements += '<tr>';
   elements += '<td>' + this.beautyPlace.name  + '</td>';
   elements += '<td>' + showLink + '</td>';
