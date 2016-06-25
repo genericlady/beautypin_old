@@ -8,15 +8,14 @@ function searchListeners() {
     $.get('/deals.json', { search: searchCriteria })
       .done(function(response) {
         var elements = '';
-
         var deals = response['deals'];
-        for (var deal of deals) {
-          // make sure deal can be serialized with beauty_place
-          var newDeal = new Deal(deal);
+
+        for (var i = 0; i < deals.length; i++) {
+          var newDeal = new Deal(deals[i]);
           newDeal.beauty_place = new BeautyPlace(newDeal.beauty_place);
           elements += newDeal.renderTR();
-
         }
+        
         $('#dealsTableBody').html(elements);
       });
     event.preventDefault;
