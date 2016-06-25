@@ -259,6 +259,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.1)
   bootstrap (~> 4.0.0.alpha3)
+  bundler
   byebug
   capybara
   coffee-rails (~> 4.1.0)

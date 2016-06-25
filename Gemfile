@@ -19,6 +19,7 @@ gem 'geokit-rails'
 gem 'omniauth-facebook'
 gem 'active_model_serializers', '~> 0.10.1'
 gem 'kaminari'
+gem 'bundler'
 
 group :development, :test do
   gem 'pry-rails'
