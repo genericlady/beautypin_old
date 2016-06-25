@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+ruby '2.3.1'
 
 gem 'rails', '4.2.6'
 gem 'sqlite3'
@@ -28,14 +28,14 @@ group :development, :test do
   gem 'byebug'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'spring'
+  gem 'letter_opener'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
-  gem 'spring'
 end
 
-group :test do
-  gem 'letter_opener'
-
+group :production do
+  gem 'rails_12factor'
 end

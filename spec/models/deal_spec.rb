@@ -22,8 +22,4 @@ describe 'Deal Relationships' do
     it { should belong_to(:beauty_place) }
   end
 
-  context 'has many services' do
-    it { should have_many(:services) }
-  end
-
 end
