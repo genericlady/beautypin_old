@@ -99,7 +99,7 @@ function onDealUpdateButton() {
       var dealParams = form.serializeArray();
 
       $.post(url, dealParams).done(function(html){
-        let mainElement = $('body > main');
+        var mainElement = $('body > main');
         clearHTML(mainElement);
         mainElement.append(html);
       });
@@ -112,7 +112,7 @@ function onDealUpdateButton() {
 function onDataShow() {
   $('body').on("click", "a[data-deal-show]", function(event) {
     url = this.dataset.dealShow;
-    let mainElement = $('body > main');
+    var mainElement = $('body > main');
 
     $.ajax({
       url: url,
@@ -121,7 +121,7 @@ function onDataShow() {
     }).success(function(json) {
       var deal = new Deal(json['deal']);
       deal.beautyPlace = new BeautyPlace(json['beauty_place']);
-      let html = deal.renderShow();
+      var html = deal.renderShow();
       clearHTML(mainElement);
       mainElement.append(html);
 
