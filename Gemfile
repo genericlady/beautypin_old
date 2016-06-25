@@ -18,6 +18,8 @@ gem 'omniauth-facebook'
 gem 'active_model_serializers', '~> 0.10.1'
 gem 'kaminari'
 gem 'bundler'
+gem 'pg'
+
 
 group :development, :test do
   gem 'sqlite3'
@@ -40,5 +42,4 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'puma'
-  gem 'pg'
 end
