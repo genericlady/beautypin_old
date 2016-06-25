@@ -15,7 +15,7 @@ var Deal = function(attributes) {
 Deal.prototype.getTemplate = Handlebars.getTemplate;
 // Deal.getTemplate(model, filename);
 Deal.prototype.renderTR = function() {
-  let elements = '';
+  var elements = '';
   let showLink = '<a href="#" data-deal-show="/deals/' + this.id + '" data-remote="true">' + this.title + '</a>';
   elements += '<tr>';
   elements += '<td>' + this.beautyPlace.name  + '</td>';
@@ -26,13 +26,8 @@ Deal.prototype.renderTR = function() {
   return elements;
 };
 
-Deal.prototype.renderForm = function() {
-  let elements = '';
-  elements += ''
-};
-
 Deal.prototype.renderTable = function(tableRows) {
-  let elements = [];
+  var elements = [];
   elements.push('<table id="dealsTable" class="table">');
   elements.push('<tr><th>place</th><th>title</th>');
   elements.push('<th><a href="/sort_by_discount" data-remote="true"></a></th>');
@@ -46,7 +41,7 @@ Deal.prototype.renderTable = function(tableRows) {
 };
 
 Deal.prototype.renderShow = function() {
-  let elements = '';
+  var elements = '';
   let url = '/deals/' + this.id + '/edit'
   elements += '<ul>';
   elements += '<li>Place of Beauty: ' + this.beautyPlace.name + '</li>';
