@@ -55,9 +55,9 @@ Deal.prototype.renderShow = function() {
 function onSortByDiscount() {
   $( 'a[sort-by-discount]' ).on("click", function(event) {
 
-    let searchCriteria = $( '#lastSearch' ).val();
-    let note = '';
-    let dealsTableBody = $( '#dealsTableBody' );
+    var searchCriteria = $( '#lastSearch' ).val();
+    var note = '';
+    var dealsTableBody = $( '#dealsTableBody' );
 
     $.get(this.href, { search: searchCriteria }, function(response) {
       for (var i = 0; i < response.deals.length; i++) {
