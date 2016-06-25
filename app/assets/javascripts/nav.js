@@ -14,7 +14,7 @@ function onNavDeals() {
   var tableRows = '';
 
   $('body').on("click", '[data-nav-deals]', function(event) {
-    let url = this.dataset.navDeals;
+    var url = this.dataset.navDeals;
 
     $.ajax({
       url: url,
