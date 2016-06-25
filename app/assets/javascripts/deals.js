@@ -94,9 +94,9 @@ function onDealEditButton() {
 
 function onDealUpdateButton() {
   $( 'form.edit_deal' ).on("submit", function(event) {
-      let $form = $( this );
-      let url = $form.attr('action');
-      var dealParams = $form.serializeArray();
+      let form = $( this );
+      let url = form.attr('action');
+      var dealParams = form.serializeArray();
 
       $.post(url, dealParams).done(function(html){
         let mainElement = $('body > main');
