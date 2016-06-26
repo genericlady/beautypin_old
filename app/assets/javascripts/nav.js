@@ -11,10 +11,9 @@ function onNavbarBrand() {
 };
 
 function onNavDeals() {
-  var tableRows = '';
-
   $('body').on("click", '[data-nav-deals]', function(event) {
-    var url = this.dataset.navDeals;
+    var tableRows = '';
+    var url = this.href;
 
     $.ajax({
       url: url,
@@ -27,12 +26,17 @@ function onNavDeals() {
         deal.beautyPlace = deals[i].beauty_place;
         tableRows += deal.renderTR();
       }
-      $('main').html(Deal.prototype.renderTable(tableRows));
+
+      var mainElement = $('main');
+      var tableDeals = Deal.prototype.renderTable(tableRows);
+
+      clearHTML($('#flash'));
+      mainElement.html(tableDeals);
+
     }).fail(function() {
-      console.log('onNavDeals ajax call fail on /deals');
+      console.log('Ajax call fail on /deals');
     });
 
     event.preventDefault;
-
   });
 }
