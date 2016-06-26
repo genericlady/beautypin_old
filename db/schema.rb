@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20160506145515) do
   create_table "deals", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "discount"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "discount",        limit: 100
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "beauty_place_id"
   end
 
