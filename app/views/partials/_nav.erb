@@ -1,7 +1,7 @@
 <header class="navigation" role="banner">
   <div class="navigation-wrapper">
     <nav class="navbar navbar-light bg-faded" role="navigation" style="background-color: #">
-      <%= link_to 'BeautyPin', root_path, class: 'navbar-brand', remote: true %>
+      <%= link_to 'BeautyPin', root_path, class: 'navbar-brand' %>
       <% if user_signed_in? %>
         <%= render 'partials/signed_in_nav' %>
       <% else %>

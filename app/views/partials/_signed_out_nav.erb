@@ -1,9 +1,6 @@
 <div class="nav signed-out-nav">
-  <%= button_tag new_user_session_path, class: 'nav-item btn btn-primary-outline ' do %>
-    Sign In
-  <% end %>
+  <%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary", role: "button" %>
 
-  <%= button_tag new_user_registration_path, class: 'nav-item btn btn-primary-outline' do %>
-    Register
-  <% end %>
+  <%= link_to 'Register', new_user_registration_path, class: "btn btn-primary", role: "button" %>
+
 </div>
