@@ -1,27 +1,9 @@
-# 15.times do |n|
-#   email = "example-#{n+1}@example.org"
-#   password = "password"
-#   User.create(
-#                email: email,
-#                password:              password,
-#                password_confirmation: password
-#                )
-# end
-
 User.create!(email: 'normal@gmail.com', password: 'password', role: 0).confirm
 User.create!(email: 'admin@gmail.com', password: 'password', role: 2).confirm
 owner = User.create!(email: 'owner@gmail.com', password: 'password', role: 1)
 owner.confirm
 
-Service.create(title: 'Manicure', price: '10')
-Service.create(title: 'Pedicure', price: '15')
-Service.create(title: 'Blowdry', price: '20')
-Service.create(title: 'Juviderm Injection', price: '200')
-
 beauty_place = owner.beauty_places.create(name: 'Sassoon', published: true)
-beauty_place.employees.create(name: 'Jessica')
-beauty_place.employees.create(name: 'Beth')
-beauty_place.employees.create(name: 'Scarlet')
 
 100.times do |num|
   beauty_place.deals.create(
