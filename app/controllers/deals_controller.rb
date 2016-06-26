@@ -1,12 +1,8 @@
 class DealsController < ApplicationController
 
   def index
-    if @last_search = params[:search]
-      @deals = Deal.search(params[:search]).page params[:page]
-      @deals = policy_scope(@deals)
-    else
-      @deals = policy_scope(Deal).page params[:page]
-    end
+    @deals = Deal.search(params[:search]).page params[:page]
+    @deals = policy_scope(@deals)
 
     respond_to do |format|
       format.html
