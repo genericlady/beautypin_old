@@ -7,7 +7,9 @@ function searchListeners() {
     var searchCriteria = $('#lastSearch').val();
     $.get('/deals.json', { search: searchCriteria })
       .done(function(response) {
+        
         var deals = deserializeDeals(response);
+
         renderDealsTableHTML(deals);
       });
     event.preventDefault;
