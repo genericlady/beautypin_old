@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require handlebars.runtime-latest
 //= handlebars_helpers
-//= require turbolinks
 //= require beauty_places
 //= require deals
 //= require nav
