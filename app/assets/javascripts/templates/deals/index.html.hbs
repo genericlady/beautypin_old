@@ -4,7 +4,7 @@
       <th>place</th>
       <th>title</th>
       <th>
-        <a href="/sort_by_discount" data-remote="true">discount</a>
+        <a href="/sort_by_discount" class="sort-by-discount" data-remote="true">discount</a>
       </th>
       <th>description</th>
     </tr>
@@ -14,7 +14,7 @@
     {{#each deals}}
     <tr>
       <th scope="row">{{beauty_place.name}}</th>
-      <td>{{title}}</td>
+      <td><a href="/deals/{{id}}" class="deals-show">{{title}}</a></td>
       <td>{{discount}}</td>
       <td>{{description}}</td>
     </tr>
