@@ -1,5 +1,5 @@
 # features
-Search for a Beauty Deal by Location and Title.
+- Normal registered users can search for any deal by title and current location
 
 # tests
 RSpec - Passing
