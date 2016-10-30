@@ -68,7 +68,7 @@ class DealsController < ApplicationController
     respond_to do |format|
       format.html { render layout: false }
       format.js
-      format.json { render json: {deal: @deal, beauty_place: @deal.beauty_place } }
+      format.json { render json: @deal.to_json(include: [:beauty_place]) }
     end
   end
 

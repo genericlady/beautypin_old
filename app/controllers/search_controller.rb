@@ -3,7 +3,6 @@ class SearchController < ApplicationController
     @deals = policy_scope(Deal.search(params[:search]))
 
     respond_to do |format|
-      # format.json { render json: { deals: @deals, include: 'beauty_place' } }
       format.json { render json: @deals.to_json(include: [:beauty_place]) }
       format.html { render 'deals/index' }
     end
@@ -15,7 +14,6 @@ class SearchController < ApplicationController
                               .page(params[:page]))
 
     respond_to do |format|
-
       format.json { render json: @deals.to_json(include: [:beauty_place]) }
       format.html { render 'deals/index' }
     end
