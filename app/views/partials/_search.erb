@@ -1,10 +1,12 @@
 <div class="search-bar">
-  <%= form_tag deals_path, method: 'get', class: 'search-form form-inline' do %>
+  <form class='search-form form-inline'>
     <ul class='list-inline'>
       <li class='list-inline-item'>Current Location:</li>
       <li class='list-inline-item'><%= text_field_tag :location, params[:location], class: 'form-control', value: (current_user.city + ' ' + current_user.state) %></li>
       <li class='list-inline-item'><%= text_field_tag :search, params[:search], class: 'form-control', id: "lastSearch", value: @last_search || ''  %></li>
-      <li class='list-inline-item'><%= button_tag 'Search', name: nil, class: "btn btn-primary-outline search" %></li>
+      <li class='list-inline-item'>
+        <button type="button" class="search-submit btn btn-primary-outline search">Search</button>
+      </li>
     </ul>
-  <% end %>
+  </form>
 </div>
