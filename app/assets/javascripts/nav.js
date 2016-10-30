@@ -11,8 +11,8 @@ function onNavDeals() {
       method: "GET"
     }).success(function(deals) {
 
-      renderDealsIndex(deals);
-
+      Deal.renderIndex(deals);
+      
     }).fail(function() {
       console.log('Ajax call fail on /deals');
     });
@@ -21,8 +21,3 @@ function onNavDeals() {
   });
 }
 
-function renderDealsIndex(deals) {
-  var context = { 'deals': deals };
-	clearHTML($('main'));
-  $('main').append(HandlebarsTemplates['deals/index'](context));
-}
