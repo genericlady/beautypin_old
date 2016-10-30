@@ -1,134 +1,53 @@
+var Deal = (function() {
+
+  var renderIndex = (deals) => {
+    var context = { 'deals': deals };
+    clearHTML($('main'));
+    $('main').append(HandlebarsTemplates['deals/index'](context));
+  };
+
+  var renderShow = (json) => {
+    clearHTML($('main'));
+    $('main').append(HandlebarsTemplates['deals/show'](json));
+  };
+
+  var public = {
+    renderIndex: renderIndex,
+     renderShow: renderShow
+  };
+
+  return public;
+}());
+
 $(function() {
-  onDealUpdateButton();
   onSortByDiscount();
-  onDealEditButton();
-  onDataShow();
+  onDealsShow();
 });
 
-var Deal = function(attributes) {
-  this.id = attributes.id
-  this.title = attributes.title;
-  this.discount = attributes.discount;
-  this.description = attributes.description;
-}
-
-Deal.prototype.getTemplate = Handlebars.getTemplate;
-// Deal.getTemplate(model, filename);
-Deal.prototype.renderTR = function() {
-  var elements = '';
-  var showLink = '<a href="#" data-deal-show="/deals/' + this.id + '" data-remote="true">' + this.title + '</a>';
-  elements += '<tr>';
-  elements += '<td>' + this.beautyPlace.name  + '</td>';
-  elements += '<td>' + showLink + '</td>';
-  elements += '<td>' + this.discount + '</td>';
-  elements += '<td>' + this.description;
-  elements += '</tr>';
-  return elements;
-};
-
-Deal.prototype.renderTable = function(tableRows) {
-  var elements = [];
-  elements.push('<table id="dealsTable" class="table">');
-  elements.push('<tr><th>place</th><th>title</th>');
-  elements.push('<th><a href="/sort_by_discount" data-remote="true"></a></th>');
-  elements.push('<th>description</th>');
-  elements.push('</tr>');
-  elements.push('<tbody id="dealsTableBody">');
-  elements.push(tableRows);
-  elements.push('</tbody>');
-  elements.push('</table>')
-  return elements.join('');
-};
-
-Deal.prototype.renderShow = function() {
-  var elements = '';
-  var url = '/deals/' + this.id + '/edit';
-  elements += '<ul>';
-  elements += '<li>Place of Beauty: ' + this.beautyPlace.name + '</li>';
-  elements += '<li>title: ' + this.title + '</li>';
-  elements += '<li>description: ' + this.description + '</li>';
-  elements += '<li>discount: ' + this.discount + '</li>';
-  elements += '</ul>';
-  return elements;
-};
-
 function onSortByDiscount() {
-  $( 'a[sort-by-discount]' ).on("click", function(event) {
-
+  $('body').on("click", 'a.sort-by-discount', function(event) {
     var searchCriteria = $( '#lastSearch' ).val();
-    var note = '';
-    var dealsTableBody = $( '#dealsTableBody' );
-
-    $.get(this.href, { search: searchCriteria }, function(response) {
-      for (var i = 0; i < response.deals.length; i++) {
-        var response = response.deals[i];
-        var deal = new Deal($response);
-        deal.beautyPlace = new BeautyPlace(response.beautyPlace);
-        note += deal.renderTR();
-      };
-      clearHTML(dealsTableBody);
-      dealsTableBody.html(note);
+    $.get('/sort_by_discount', { search: searchCriteria }, function(response) {
+      Deal.renderIndex(response);
     });
-
-    event.preventDefault;
+    event.preventDefault();
   });
+
 }
 
-function onDealEditButton() {
-  $('body').on('click', 'a[data-edit]', function(event) {
-    url = this.href;
-    $.ajax({
-      url: url,
-      dataType: 'json',
-      method: 'GET'
-    }).success(function(response) {
-      // render edit
-      // deal.renderEditPartial()
-    }).fail(function(response) {
-      console.log('Something went wrong: ' + response);
-    });
+function onDealsShow() {
+  $('body').on("click", '.deals-show', function(event) {
 
-    event.stopPropogation;
-  });
-}
+    var options = { url: this.href, dataType: "json", method: "GET" }
+    $.ajax(options).success(function(json) {
 
-function onDealUpdateButton() {
-  $( 'form.edit_deal' ).on("submit", function(event) {
-      var form = $( this );
-      var url = form.attr('action');
-      var dealParams = form.serializeArray();
-
-      $.post(url, dealParams).done(function(html){
-        var mainElement = $('body > main');
-        clearHTML(mainElement);
-        mainElement.append(html);
-      });
-
-      event.preventDefault;
-
-    });
-}
-
-function onDataShow() {
-  $('body').on("click", "a[data-deal-show]", function(event) {
-    url = this.dataset.dealShow;
-    var mainElement = $('body > main');
-
-    $.ajax({
-      url: url,
-      dataType: "json",
-      method: "GET"
-    }).success(function(json) {
-      var deal = new Deal(json['deal']);
-      deal.beautyPlace = new BeautyPlace(json['beauty_place']);
-      var html = deal.renderShow();
-      clearHTML(mainElement);
-      mainElement.append(html);
+      Deal.renderShow(json)
 
     }).fail(function(response) {
       console.log('sorry something went wrong' + response);
     });
 
+    event.preventDefault();
   });
 
 }

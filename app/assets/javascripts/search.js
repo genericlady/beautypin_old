@@ -9,8 +9,7 @@ function searchListeners() {
 
     $.get('/deals.json', { search: searchCriteria })
       .done(function(response) {
-				clearHTML($('#main'));
-				renderDealsIndex(response);
+        Deal.renderIndex(response);
       });
 
     event.preventDefault;
