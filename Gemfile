@@ -18,6 +18,7 @@ gem 'omniauth-facebook'
 gem 'active_model_serializers', '~> 0.10.1'
 gem 'kaminari'
 gem 'bundler'
+gem 'handlebars_assets'
 
 group :development, :test do
   gem 'sqlite3'
