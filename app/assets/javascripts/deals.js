@@ -1,3 +1,8 @@
+$(function() {
+  onSortByDiscount();
+  onDealsShow();
+});
+
 var Deal = (function() {
 
   var renderIndex = (deals) => {
@@ -19,37 +24,48 @@ var Deal = (function() {
   return public;
 }());
 
-$(function() {
-  onSortByDiscount();
-  onDealsShow();
-});
-
 function onSortByDiscount() {
   $('body').on("click", 'a.sort-by-discount', function(event) {
     var searchCriteria = $( '#lastSearch' ).val();
-    $.get('/sort_by_discount', { search: searchCriteria }, function(response) {
-      Deal.renderIndex(response);
-    });
+
+    getSortByDiscount(searchCriteria).then(
+      (response) => {
+        Deal.renderIndex(response);
+      }
+    );
+
     event.preventDefault();
   });
 
 }
 
+function getSortByDiscount(searchCriteria) {
+  return $.get('/sort_by_discount', { search: searchCriteria }, function(response) {
+    return response;
+  });
+}
+
 function onDealsShow() {
   $('body').on("click", '.deals-show', function(event) {
 
-    var options = { url: this.href, dataType: "json", method: "GET" }
-    $.ajax(options).success(function(json) {
-
-      Deal.renderShow(json)
-
-    }).fail(function(response) {
+    var ajaxParams = { url: this.href, dataType: "json", method: "GET" }
+    
+    getDealsShow(ajaxParams).then(
+      (response) => {
+        Deal.renderShow(response);
+      }
+    ).fail(function(response) {
       console.log('sorry something went wrong' + response);
     });
 
     event.preventDefault();
   });
+}
 
+function getDealsShow(ajaxParams) {
+  return $.ajax(ajaxParams).success(function(json) {
+    return json
+  }); 
 }
 
 function clearHTML(element) {
