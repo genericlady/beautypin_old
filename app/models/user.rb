@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
     self.role ||= :normal
   end
 
-  # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable
